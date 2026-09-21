@@ -1,0 +1,415 @@
+.student-dashboard {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  min-height: 100vh;
+  background: #f5f7fc;
+  color: #172348;
+}
+
+.student-dashboard .sd-sidebar {
+  padding: 28px 18px;
+  background: #fff;
+  border-right: 1px solid #e5eaf3;
+}
+
+.student-dashboard .sd-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #0649e8;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.student-dashboard .sd-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 32px 0;
+  text-align: center;
+}
+
+.student-dashboard .sd-avatar {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #eaf0ff;
+  color: #0649e8;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.student-dashboard .sd-user span {
+  color: #647089;
+  font-size: 12px;
+}
+
+.student-dashboard .sd-navigation {
+  display: grid;
+  gap: 8px;
+}
+
+.student-dashboard .sd-navigation button,
+.student-dashboard .sd-home {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 13px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #52617b;
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.student-dashboard .sd-navigation button:hover {
+  background: #f0f4ff;
+}
+
+.student-dashboard .sd-navigation button.active {
+  background: #0649e8;
+  color: #fff;
+}
+
+.student-dashboard .sd-count {
+  margin-left: auto;
+}
+
+.student-dashboard .sd-home {
+  margin-top: 32px;
+}
+
+.student-dashboard .sd-main {
+  min-width: 0;
+  padding: 28px 36px 48px;
+}
+
+.student-dashboard .sd-preview {
+  padding: 10px 14px;
+  border: 1px solid #dbe5fc;
+  border-radius: 8px;
+  background: #edf3ff;
+  color: #445c85;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.student-dashboard .sd-header {
+  margin: 28px 0;
+}
+
+.student-dashboard .sd-eyebrow {
+  color: #0649e8;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.student-dashboard .sd-header h1 {
+  margin: 10px 0;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.student-dashboard .sd-header p:not(.sd-eyebrow) {
+  color: #647089;
+  line-height: 1.6;
+}
+
+.student-dashboard .sd-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.student-dashboard .sd-stats article {
+  padding: 22px;
+  border: 1px solid #e5eaf3;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.student-dashboard .sd-stats span {
+  display: block;
+  color: #647089;
+  font-size: 13px;
+}
+
+.student-dashboard .sd-stats strong {
+  display: block;
+  margin-top: 12px;
+  font-size: 30px;
+}
+
+.student-dashboard .sd-welcome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 24px 0;
+  padding: 26px;
+  border-radius: 14px;
+  background: linear-gradient(120deg, #e6efff, #eee7ff);
+}
+
+.student-dashboard .sd-welcome h2 {
+  margin: 0 0 10px;
+  font-size: 21px;
+}
+
+.student-dashboard .sd-welcome p {
+  max-width: 550px;
+  margin: 0;
+  color: #52617b;
+  line-height: 1.7;
+}
+
+.student-dashboard .sd-welcome > svg {
+  flex-shrink: 0;
+  color: #0649e8;
+}
+
+.student-dashboard .sd-opportunities {
+  margin-top: 30px;
+}
+
+.student-dashboard .sd-opportunities h2 {
+  font-size: 22px;
+}
+
+.student-dashboard .sd-search-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #52617b;
+}
+
+.student-dashboard .sd-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  border: 1px solid #dce3ef;
+  border-radius: 10px;
+  background: #fff;
+  color: #647089;
+}
+
+.student-dashboard .sd-search input {
+  width: 100%;
+  min-width: 0;
+  padding: 15px 0;
+  border: 0;
+  background: transparent;
+  color: #172348;
+  font: inherit;
+  font-size: 14px;
+}
+
+.student-dashboard .sd-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.student-dashboard .sd-filters button {
+  padding: 9px 16px;
+  border: 1px solid #dce3ef;
+  border-radius: 20px;
+  background: #fff;
+  color: #52617b;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.student-dashboard .sd-filters button.active {
+  border-color: #0649e8;
+  background: #0649e8;
+  color: #fff;
+}
+
+.student-dashboard .sd-announcement {
+  color: #405477;
+  font-size: 13px;
+}
+
+.student-dashboard .sd-announcement:empty {
+  margin: 0;
+}
+
+.student-dashboard .sd-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.student-dashboard .sd-opportunity {
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  border: 1px solid #e1e7f2;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.student-dashboard .sd-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.student-dashboard .sd-job-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #edf3ff;
+  color: #0649e8;
+}
+
+.student-dashboard .sd-type {
+  color: #7024cd;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.student-dashboard .sd-opportunity h3 {
+  margin: 18px 0 8px;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.student-dashboard .sd-company {
+  margin: 0 0 18px;
+  color: #647089;
+  font-size: 13px;
+}
+
+.student-dashboard .sd-pay {
+  font-size: 15px;
+}
+
+.student-dashboard .sd-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 16px 0;
+  color: #647089;
+  font-size: 12px;
+}
+
+.student-dashboard .sd-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.student-dashboard .sd-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 22px;
+}
+
+.student-dashboard .sd-skills span {
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: #f0f4fb;
+  color: #52617b;
+  font-size: 11px;
+}
+
+.student-dashboard .sd-save {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: auto;
+  padding: 12px;
+  border: 1px solid #0649e8;
+  border-radius: 8px;
+  background: #fff;
+  color: #0649e8;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.student-dashboard .sd-save:hover,
+.student-dashboard .sd-save.is-saved {
+  background: #edf3ff;
+}
+
+.student-dashboard .sd-empty {
+  padding: 40px 20px;
+  border: 1px dashed #cbd5e5;
+  border-radius: 12px;
+  text-align: center;
+  color: #647089;
+}
+
+.student-dashboard button:focus-visible,
+.student-dashboard a:focus-visible,
+.student-dashboard input:focus-visible {
+  outline: 3px solid #8255ef;
+  outline-offset: 3px;
+}
+
+@media (max-width: 1150px) {
+  .student-dashboard .sd-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .student-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .student-dashboard .sd-sidebar {
+    border-right: 0;
+    border-bottom: 1px solid #e5eaf3;
+  }
+
+  .student-dashboard .sd-user {
+    display: none;
+  }
+
+  .student-dashboard .sd-navigation {
+    margin-top: 20px;
+  }
+
+  .student-dashboard .sd-home {
+    margin-top: 12px;
+  }
+
+  .student-dashboard .sd-main {
+    padding: 24px 18px;
+  }
+}
+
+@media (max-width: 540px) {
+  .student-dashboard .sd-stats,
+  .student-dashboard .sd-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .student-dashboard .sd-welcome > svg {
+    display: none;
+  }
+}

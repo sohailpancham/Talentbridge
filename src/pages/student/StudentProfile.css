@@ -1,0 +1,334 @@
+.student-profile {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+  color: #172348;
+}
+
+.student-profile .sp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.student-profile .sp-header a {
+  color: #0649e8;
+}
+
+.student-profile .sp-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.student-profile .sp-notice {
+  padding: 12px 16px;
+  background: #edf3ff;
+  border-radius: 10px;
+  color: #445c85;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.student-profile .sp-card {
+  margin-bottom: 22px;
+  padding: 28px;
+  border: 1px solid #e0e7f2;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(30, 60, 120, 0.04);
+}
+
+.student-profile .sp-intro {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  background: linear-gradient(120deg, #f0f6ff, #faf7ff);
+}
+
+.student-profile .sp-avatar {
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 4px solid white;
+  border-radius: 50%;
+  background: #dde8ff;
+  color: #0649e8;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.student-profile .sp-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.student-profile .sp-intro-text {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.student-profile h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  letter-spacing: -0.5px;
+}
+
+.student-profile h2 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+.student-profile h3 {
+  font-size: 17px;
+}
+
+.student-profile p {
+  line-height: 1.7;
+}
+
+.student-profile .sp-muted {
+  color: #647089;
+  font-size: 13px;
+}
+
+.student-profile .sp-form-grid,
+.student-profile .sp-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 22px;
+}
+
+.student-profile label {
+  display: block;
+  margin: 18px 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.student-profile input,
+.student-profile textarea,
+.student-profile select {
+  width: 100%;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #d9e1ee;
+  border-radius: 8px;
+  background: #fff;
+  color: #172348;
+  font: inherit;
+  font-size: 14px;
+}
+
+.student-profile textarea {
+  resize: vertical;
+}
+
+.student-profile .sp-primary,
+.student-profile .sp-secondary,
+.student-profile .sp-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.student-profile .sp-primary {
+  margin-top: 20px;
+  border: 1px solid #0649e8;
+  background: #0649e8;
+  color: #fff;
+}
+
+.student-profile .sp-primary:hover {
+  background: #033ac0;
+}
+
+.student-profile .sp-secondary {
+  border: 1px solid #0649e8;
+  background: #fff;
+  color: #0649e8;
+}
+
+.student-profile .sp-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.student-profile .sp-skills span {
+  padding: 8px 12px;
+  border-radius: 20px;
+  background: #edf3ff;
+  color: #0649e8;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.student-profile .sp-description {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.student-profile .sp-projects {
+  display: grid;
+  gap: 16px;
+}
+
+.student-profile .sp-project {
+  padding: 20px;
+  border: 1px solid #e0e7f2;
+  border-radius: 12px;
+}
+
+.student-profile .sp-project h3 {
+  margin-top: 0;
+  overflow-wrap: anywhere;
+}
+
+.student-profile .sp-project-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.student-profile .sp-project-actions a {
+  color: #0649e8;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.student-profile .sp-remove {
+  padding: 8px 12px;
+  border: 1px solid #f0cccc;
+  background: #fff6f6;
+  color: #a52222;
+}
+
+.student-profile .sp-project-form {
+  margin-top: 26px;
+  padding-top: 16px;
+  border-top: 1px solid #e0e7f2;
+}
+
+.student-profile .sp-empty {
+  padding: 20px;
+  border-radius: 10px;
+  background: #f7f9fd;
+  color: #647089;
+}
+
+.student-profile .sp-message {
+  color: #405477;
+  font-size: 14px;
+}
+
+.student-profile .sp-message:empty {
+  display: none;
+}
+
+.student-profile input:focus-visible,
+.student-profile textarea:focus-visible,
+.student-profile select:focus-visible,
+.student-profile button:focus-visible,
+.student-profile a:focus-visible {
+  outline: 3px solid #8255ef;
+  outline-offset: 3px;
+}
+
+@media (max-width: 650px) {
+  .student-profile {
+    padding: 18px;
+  }
+
+  .student-profile .sp-intro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .student-profile .sp-form-grid,
+  .student-profile .sp-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .student-profile .sp-card {
+    padding: 20px;
+  }
+}
+.student-dashboard .sd-profile-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 12px;
+  border-radius: 8px;
+  color: #52617b;
+  font-size: 13px;
+}
+
+.student-dashboard .sd-profile-link:hover {
+  background: #f0f4ff;
+  color: #0649e8;
+}
+.student-profile .sp-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 20px;
+  border: 1.5px solid #2458e6;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #ffffff, #edf3ff);
+  color: #1748ce;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow:
+    0 3px 0 #b9caf5,
+    0 6px 14px rgb(36 88 230 / 10%);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.student-profile .sp-secondary:hover {
+  background: #edf3ff;
+  transform: translateY(-1px);
+}
+
+.student-profile .sp-secondary:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #b9caf5;
+}
+
+.student-profile .sp-secondary:focus-visible {
+  outline: 3px solid #91afff;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .student-profile .sp-secondary {
+    transition: none;
+  }
+}
