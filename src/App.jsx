@@ -4,6 +4,8 @@ import Login from "./pages/public/Login";
 import "./styles/global.css";
 import StudentSignup from "./pages/public/StudentSignup";
 import CompanySignup from "./pages/public/CompanySignup";
+import StudentDashboard from "./pages/student/StudentDashboard";
+import StudentProfile from "./pages/student/StudentProfile";
 
 export default function App() {
   return (
@@ -13,6 +15,8 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/student/signup" element={<StudentSignup />} />
         <Route path="/company/signup" element={<CompanySignup />} />
+        <Route path="/student/dashboard" element={<StudentDashboard />} />
+        <Route path="/student/profile" element={<StudentProfile />} />
 
         <Route
           path="*"

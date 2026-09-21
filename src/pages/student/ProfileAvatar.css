@@ -1,0 +1,553 @@
+.tb-avatar {
+  flex-shrink: 0;
+}
+
+.tb-avatar,
+.tb-avatar * {
+  box-sizing: border-box;
+}
+
+.tb-avatar button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.tb-avatar .tb-avatar-trigger {
+  position: relative;
+  display: block;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.tb-avatar .tb-avatar-picture {
+  position: relative;
+  display: block;
+  width: 148px;
+  height: 148px;
+  overflow: hidden;
+  border: 4px solid white;
+  border-radius: 50%;
+  background: #eaf0ff;
+  box-shadow: 0 0 0 1px #e1e7f0;
+}
+
+.tb-avatar .tb-avatar-picture > img,
+.tb-avatar .tb-avatar-picture > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tb-avatar .tb-avatar-initials {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  color: #2256da;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.tb-avatar .tb-avatar-picture--work {
+  border-color: #198754;
+}
+
+.tb-avatar .tb-avatar-frame-label {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 8px 0 10px;
+  background: #198754;
+  color: white;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.tb-avatar .tb-avatar-camera {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 3px solid white;
+  border-radius: 50%;
+  background: #2458e6;
+  color: white;
+}
+
+.tb-avatar .tb-avatar-dialog {
+  width: min(410px, calc(100vw - 32px));
+  max-height: calc(100dvh - 40px);
+  margin: auto;
+  padding: 0;
+  overflow-y: auto;
+  border: 1px solid #e5eaf2;
+  border-radius: 20px;
+  background: #fff;
+  color: #17243d;
+  box-shadow: 0 24px 90px #17243d30;
+}
+
+.tb-avatar .tb-avatar-dialog::backdrop {
+  background: rgb(15 23 42 / 46%);
+}
+
+.tb-avatar .tb-avatar-dialog--view {
+  width: min(680px, calc(100vw - 32px));
+}
+
+.tb-avatar .tb-avatar-handle {
+  display: none;
+}
+
+.tb-avatar .tb-avatar-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 18px 20px;
+  border-bottom: 1px solid #eef1f6;
+  background: white;
+}
+
+.tb-avatar .tb-avatar-header h2 {
+  flex: 1;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.tb-avatar .tb-avatar-header h2:focus {
+  outline: none;
+}
+
+.tb-avatar .tb-avatar-icon-button {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #f4f6fa;
+  color: #52617a;
+}
+
+.tb-avatar .tb-avatar-body {
+  padding: 20px;
+}
+
+.tb-avatar .tb-avatar-summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 18px;
+}
+
+.tb-avatar .tb-avatar-summary .tb-avatar-picture {
+  flex-shrink: 0;
+  width: 62px;
+  height: 62px;
+  border-width: 2px;
+}
+
+.tb-avatar .tb-avatar-summary .tb-avatar-initials {
+  font-size: 22px;
+}
+
+.tb-avatar .tb-avatar-summary .tb-avatar-frame-label {
+  padding: 3px 0;
+  font-size: 5px;
+  letter-spacing: 0;
+}
+
+.tb-avatar .tb-avatar-summary strong {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 15px;
+}
+
+.tb-avatar .tb-avatar-summary p {
+  margin: 5px 0 0;
+  color: #68758a;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.tb-avatar .tb-avatar-menu {
+  border-top: 1px solid #eef1f6;
+}
+
+.tb-avatar .tb-avatar-menu button {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  min-height: 51px;
+  padding: 12px 8px;
+  border: 0;
+  border-bottom: 1px solid #eef1f6;
+  border-radius: 0;
+  background: white;
+  color: #42516b;
+  text-align: left;
+  box-shadow: none;
+}
+
+.tb-avatar .tb-avatar-menu button span {
+  flex: 1;
+  color: #17243d;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tb-avatar .tb-avatar-menu button:hover {
+  background: #f6f8fd;
+}
+
+.tb-avatar .tb-avatar-menu .tb-avatar-danger,
+.tb-avatar .tb-avatar-menu .tb-avatar-danger span {
+  color: #bb3434;
+}
+
+.tb-avatar .tb-avatar-note {
+  margin: 16px 0 0;
+  color: #738096;
+  font-size: 12px;
+}
+
+.tb-avatar .tb-avatar-full {
+  display: block;
+  width: 100%;
+  max-height: 65dvh;
+  border-radius: 12px;
+  object-fit: contain;
+  background: #f5f7fa;
+}
+
+.tb-avatar .tb-avatar-large-preview {
+  display: flex;
+  justify-content: center;
+  margin: 4px 0 18px;
+}
+
+.tb-avatar .tb-avatar-description {
+  margin: 0 0 18px;
+  color: #68758a;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.tb-avatar .tb-avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.tb-avatar .tb-avatar-grid button {
+  position: relative;
+  padding: 6px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  background: #f5f7fb;
+}
+
+.tb-avatar .tb-avatar-grid button > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.tb-avatar .tb-avatar-grid button[aria-pressed="true"],
+.tb-avatar .tb-avatar-frame-options button[aria-pressed="true"] {
+  border-color: #2458e6;
+  background: #eef3ff;
+}
+
+.tb-avatar .tb-avatar-selected {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background: #2458e6;
+  color: white;
+}
+
+.tb-avatar .tb-avatar-primary {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 22px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 12px;
+  background: #2458e6;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 3px 0 #173da8;
+}
+
+.tb-avatar .tb-avatar-primary:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #173da8;
+}
+
+.tb-avatar .tb-avatar-frame-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.tb-avatar .tb-avatar-frame-options button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 8px;
+  border: 2px solid #e8ecf3;
+  border-radius: 14px;
+  background: white;
+  color: #34435c;
+  font-size: 13px;
+}
+
+.tb-avatar .tb-avatar-frame-options .tb-avatar-picture {
+  width: 84px;
+  height: 84px;
+  border-width: 3px;
+}
+
+.tb-avatar .tb-avatar-frame-options .tb-avatar-initials {
+  font-size: 26px;
+}
+
+.tb-avatar .tb-avatar-frame-options .tb-avatar-frame-label {
+  padding: 5px 0;
+  font-size: 6px;
+  letter-spacing: 0;
+}
+
+.tb-avatar .tb-avatar-confirm {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tb-avatar .tb-avatar-confirm button {
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid #dce3ef;
+  border-radius: 10px;
+  background: white;
+  color: #34435c;
+  font-size: 14px;
+}
+
+.tb-avatar .tb-avatar-confirm .tb-avatar-delete {
+  border-color: #bb3434;
+  background: #bb3434;
+  color: white;
+}
+
+.tb-avatar .tb-avatar-error {
+  margin: 16px 0 0;
+  color: #bb3434;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.tb-avatar button:focus-visible {
+  outline: 3px solid #91afff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .tb-avatar .tb-avatar-trigger > .tb-avatar-picture {
+    width: 112px;
+    height: 112px;
+  }
+
+  .tb-avatar .tb-avatar-dialog {
+    inset: auto 0 0;
+    width: 100%;
+    max-width: 100%;
+    max-height: 90dvh;
+    margin: 0;
+    border-radius: 22px 22px 0 0;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .tb-avatar .tb-avatar-handle {
+    display: block;
+    width: 38px;
+    height: 4px;
+    margin: 10px auto 0;
+    border-radius: 10px;
+    background: #d1d7e0;
+  }
+
+  .tb-avatar .tb-avatar-header {
+    padding: 14px 18px;
+  }
+
+  .tb-avatar .tb-avatar-body {
+    padding: 18px;
+  }
+}
+/* Simple opening menu */
+.tb-avatar .tb-avatar-dialog--menu .tb-avatar-body {
+  padding: 8px 20px 16px;
+}
+
+.tb-avatar .tb-avatar-dialog--menu .tb-avatar-menu {
+  border-top: 0;
+}
+
+.tb-avatar .tb-avatar-dialog--menu .tb-avatar-menu button {
+  min-height: 60px;
+}
+
+.tb-avatar .tb-avatar-menu button:last-child {
+  border-bottom: 0;
+}
+
+/* Circular photo viewer */
+.tb-avatar .tb-avatar-dialog--view {
+  width: min(560px, calc(100vw - 32px));
+  background: #1c2027;
+  border-color: #343a45;
+  color: white;
+}
+
+.tb-avatar .tb-avatar-dialog--view .tb-avatar-header {
+  background: #1c2027;
+  border-bottom-color: #343a45;
+}
+
+.tb-avatar .tb-avatar-dialog--view .tb-avatar-icon-button {
+  background: #2c323d;
+  color: #e5eaf3;
+}
+
+.tb-avatar .tb-avatar-photo-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 0 32px;
+}
+
+.tb-avatar .tb-avatar-photo-stage .tb-avatar-picture {
+  width: min(340px, 100%, 45dvh);
+  height: auto;
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: none;
+}
+
+.tb-avatar .tb-avatar-photo-stage .tb-avatar-initials {
+  font-size: clamp(48px, 12vw, 90px);
+}
+
+.tb-avatar .tb-avatar-photo-stage .tb-avatar-picture--work {
+  border: 6px solid #198754;
+}
+
+.tb-avatar .tb-avatar-photo-stage .tb-avatar-frame-label {
+  padding: 12px 0 16px;
+  font-size: clamp(10px, 2.5vw, 16px);
+  letter-spacing: 1px;
+}
+
+.tb-avatar .tb-avatar-toolbar {
+  display: flex;
+  justify-content: space-around;
+  gap: 8px;
+  padding-top: 20px;
+  border-top: 1px solid #343a45;
+}
+
+.tb-avatar .tb-avatar-toolbar button {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 66px;
+  padding: 10px 4px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: #e6eaf2;
+  font-size: 13px;
+  box-shadow: none;
+}
+
+.tb-avatar .tb-avatar-toolbar button:hover {
+  background: #2c323d;
+}
+
+.tb-avatar .tb-avatar-toolbar .tb-avatar-toolbar-delete {
+  color: #ffaaaa;
+}
+
+.tb-avatar .tb-avatar-dialog--view .tb-avatar-note {
+  margin-top: 18px;
+  text-align: center;
+  color: #abb5c5;
+}
+
+.tb-avatar .tb-avatar-dialog--view .tb-avatar-error {
+  color: #ffaaaa;
+}
+
+@media (max-width: 600px) {
+  .tb-avatar .tb-avatar-dialog--view {
+    inset: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .tb-avatar .tb-avatar-dialog--view .tb-avatar-handle {
+    display: none;
+  }
+
+  .tb-avatar .tb-avatar-dialog--view .tb-avatar-body {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100dvh - 80px);
+  }
+
+  .tb-avatar .tb-avatar-photo-stage {
+    flex: 1;
+  }
+
+  .tb-avatar .tb-avatar-photo-stage .tb-avatar-picture {
+    width: min(340px, 100%, 48dvh);
+  }
+}
