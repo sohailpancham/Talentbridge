@@ -332,3 +332,63 @@
     transition: none;
   }
 }
+.student-profile .sp-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 44px;
+  padding: 11px 18px;
+
+  border: 1px solid #0649e8;
+  border-radius: 12px;
+
+  background: #0649e8;
+  color: #ffffff;
+  box-shadow: 0 3px 0 #0335ad;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.student-profile .sp-secondary:hover {
+  background: #053bc2;
+  color: #ffffff;
+}
+
+.student-profile .sp-secondary:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #0335ad;
+}
+
+.student-profile .sp-secondary:focus-visible {
+  outline: 3px solid #96b4ff;
+  outline-offset: 4px;
+}
+.student-profile a.sp-secondary,
+.student-profile a.sp-secondary:link,
+.student-profile a.sp-secondary:visited,
+.student-profile button.sp-secondary {
+  background: #0649e8;
+  color: #ffffff;
+  border: 1px solid #0649e8;
+  box-shadow: 0 3px 0 #0335ad;
+  opacity: 1;
+  visibility: visible;
+}
+
+.student-profile a.sp-secondary:hover,
+.student-profile button.sp-secondary:hover {
+  background: #053bc2;
+  color: #ffffff;
+}

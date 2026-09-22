@@ -6,6 +6,10 @@
   color: #172348;
 }
 
+.student-dashboard * {
+  box-sizing: border-box;
+}
+
 .student-dashboard .sd-sidebar {
   padding: 28px 18px;
   background: #fff;
@@ -17,9 +21,11 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+
   color: #0649e8;
   font-size: 22px;
   font-weight: 800;
+  text-decoration: none;
 }
 
 .student-dashboard .sd-user {
@@ -27,6 +33,7 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
+
   padding: 32px 0;
   text-align: center;
 }
@@ -34,11 +41,14 @@
 .student-dashboard .sd-avatar {
   display: grid;
   place-items: center;
+
   width: 64px;
   height: 64px;
   border-radius: 50%;
+
   background: #eaf0ff;
   color: #0649e8;
+
   font-size: 26px;
   font-weight: 700;
 }
@@ -50,33 +60,94 @@
 
 .student-dashboard .sd-navigation {
   display: grid;
-  gap: 8px;
+  gap: 12px;
 }
 
-.student-dashboard .sd-navigation button,
-.student-dashboard .sd-home {
-  display: flex;
+/* Shared blue button style */
+
+.student-dashboard :is(
+  .sd-navigation button,
+  .sd-navigation a,
+  .sd-home,
+  .sd-filters button,
+  .sd-card-actions .sd-details-link,
+  .sd-card-actions .sd-save
+) {
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  width: 100%;
-  padding: 13px 12px;
-  border: 0;
-  border-radius: 8px;
-  background: transparent;
-  color: #52617b;
-  font: inherit;
-  font-size: 13px;
-  text-align: left;
-  cursor: pointer;
-}
+  justify-content: center;
+  gap: 8px;
 
-.student-dashboard .sd-navigation button:hover {
-  background: #f0f4ff;
-}
+  min-height: 44px;
+  padding: 11px 16px;
 
-.student-dashboard .sd-navigation button.active {
+  border: 1px solid #0649e8;
+  border-radius: 12px;
+
   background: #0649e8;
   color: #fff;
+  box-shadow: 0 3px 0 #0335ad;
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.student-dashboard :is(
+  .sd-navigation button,
+  .sd-navigation a,
+  .sd-home
+) {
+  width: 100%;
+  justify-content: flex-start;
+  padding: 13px 12px;
+  text-align: left;
+}
+
+.student-dashboard :is(
+  .sd-navigation button,
+  .sd-navigation a,
+  .sd-home,
+  .sd-filters button,
+  .sd-card-actions .sd-details-link,
+  .sd-card-actions .sd-save
+):hover {
+  background: #053bc2;
+  color: #fff;
+}
+
+.student-dashboard :is(
+  .sd-navigation button,
+  .sd-navigation a,
+  .sd-home,
+  .sd-filters button,
+  .sd-card-actions .sd-details-link,
+  .sd-card-actions .sd-save
+):active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #0335ad;
+}
+
+.student-dashboard :is(
+  .sd-navigation button.active,
+  .sd-filters button.active,
+  .sd-card-actions .sd-save.is-saved
+) {
+  background: #0335ad;
+  border-color: #0335ad;
+
+  box-shadow:
+    0 3px 0 #02267d,
+    inset 0 0 0 2px #aec7ff;
 }
 
 .student-dashboard .sd-count {
@@ -87,6 +158,12 @@
   margin-top: 32px;
 }
 
+.student-dashboard .sd-navigation svg {
+  flex-shrink: 0;
+}
+
+/* Main content */
+
 .student-dashboard .sd-main {
   min-width: 0;
   padding: 28px 36px 48px;
@@ -94,10 +171,13 @@
 
 .student-dashboard .sd-preview {
   padding: 10px 14px;
+
   border: 1px solid #dbe5fc;
   border-radius: 8px;
+
   background: #edf3ff;
   color: #445c85;
+
   font-size: 12px;
   line-height: 1.6;
 }
@@ -115,6 +195,7 @@
 
 .student-dashboard .sd-header h1 {
   margin: 10px 0;
+
   font-size: clamp(26px, 3vw, 38px);
   line-height: 1.2;
   letter-spacing: -1px;
@@ -125,6 +206,8 @@
   line-height: 1.6;
 }
 
+/* Dashboard statistics */
+
 .student-dashboard .sd-stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -133,8 +216,10 @@
 
 .student-dashboard .sd-stats article {
   padding: 22px;
+
   border: 1px solid #e5eaf3;
   border-radius: 12px;
+
   background: #fff;
 }
 
@@ -150,14 +235,18 @@
   font-size: 30px;
 }
 
+/* Welcome card */
+
 .student-dashboard .sd-welcome {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+
   margin: 24px 0;
   padding: 26px;
   border-radius: 14px;
+
   background: linear-gradient(120deg, #e6efff, #eee7ff);
 }
 
@@ -169,6 +258,7 @@
 .student-dashboard .sd-welcome p {
   max-width: 550px;
   margin: 0;
+
   color: #52617b;
   line-height: 1.7;
 }
@@ -177,6 +267,8 @@
   flex-shrink: 0;
   color: #0649e8;
 }
+
+/* Search and filters */
 
 .student-dashboard .sd-opportunities {
   margin-top: 30px;
@@ -189,6 +281,7 @@
 .student-dashboard .sd-search-label {
   display: block;
   margin-bottom: 8px;
+
   font-size: 13px;
   color: #52617b;
 }
@@ -197,9 +290,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
+
   padding: 0 14px;
+
   border: 1px solid #dce3ef;
   border-radius: 10px;
+
   background: #fff;
   color: #647089;
 }
@@ -208,9 +304,11 @@
   width: 100%;
   min-width: 0;
   padding: 15px 0;
+
   border: 0;
   background: transparent;
   color: #172348;
+
   font: inherit;
   font-size: 14px;
 }
@@ -218,25 +316,9 @@
 .student-dashboard .sd-filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin: 18px 0;
-}
+  gap: 12px;
 
-.student-dashboard .sd-filters button {
-  padding: 9px 16px;
-  border: 1px solid #dce3ef;
-  border-radius: 20px;
-  background: #fff;
-  color: #52617b;
-  font: inherit;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.student-dashboard .sd-filters button.active {
-  border-color: #0649e8;
-  background: #0649e8;
-  color: #fff;
+  margin: 18px 0 22px;
 }
 
 .student-dashboard .sd-announcement {
@@ -248,6 +330,8 @@
   margin: 0;
 }
 
+/* Opportunity cards */
+
 .student-dashboard .sd-cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -257,10 +341,15 @@
 .student-dashboard .sd-opportunity {
   display: flex;
   flex-direction: column;
+
+  min-width: 0;
   padding: 22px;
+
   border: 1px solid #e1e7f2;
   border-radius: 14px;
+
   background: #fff;
+  overflow-wrap: anywhere;
 }
 
 .student-dashboard .sd-card-top {
@@ -273,9 +362,11 @@
 .student-dashboard .sd-job-icon {
   display: grid;
   place-items: center;
+
   width: 44px;
   height: 44px;
   border-radius: 10px;
+
   background: #edf3ff;
   color: #0649e8;
 }
@@ -288,6 +379,7 @@
 
 .student-dashboard .sd-opportunity h3 {
   margin: 18px 0 8px;
+
   font-size: 17px;
   line-height: 1.5;
 }
@@ -306,7 +398,9 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+
   margin: 16px 0;
+
   color: #647089;
   font-size: 12px;
 }
@@ -321,60 +415,84 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+
   margin-bottom: 22px;
 }
 
 .student-dashboard .sd-skills span {
   padding: 5px 8px;
   border-radius: 6px;
+
   background: #f0f4fb;
   color: #52617b;
+
   font-size: 11px;
 }
 
-.student-dashboard .sd-save {
+/* Separate details and bookmark controls */
+
+.student-dashboard .sd-card-actions {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
+  align-items: stretch;
+  gap: 12px;
+
   margin-top: auto;
-  padding: 12px;
-  border: 1px solid #0649e8;
-  border-radius: 8px;
-  background: #fff;
-  color: #0649e8;
-  font: inherit;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
 }
 
-.student-dashboard .sd-save:hover,
-.student-dashboard .sd-save.is-saved {
-  background: #edf3ff;
+.student-dashboard .sd-card-actions .sd-details-link {
+  flex: 1;
+  min-width: 0;
+  width: auto;
+  margin: 0;
+}
+
+.student-dashboard .sd-card-actions .sd-save {
+  flex: 0 0 46px;
+  width: 46px;
+  margin: 0;
+  padding: 10px;
+}
+
+.student-dashboard .sd-save-caption {
+  margin: 12px 0 0;
+
+  font-size: 12px;
+  color: #52617b;
 }
 
 .student-dashboard .sd-empty {
   padding: 40px 20px;
+
   border: 1px dashed #cbd5e5;
   border-radius: 12px;
+
   text-align: center;
   color: #647089;
 }
 
-.student-dashboard button:focus-visible,
-.student-dashboard a:focus-visible,
-.student-dashboard input:focus-visible {
+/* Keyboard focus and disabled controls */
+
+.student-dashboard :is(button, a, input):focus-visible {
   outline: 3px solid #8255ef;
-  outline-offset: 3px;
+  outline-offset: 4px;
 }
+
+.student-dashboard .sd-card-actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Smaller desktop screens */
 
 @media (max-width: 1150px) {
   .student-dashboard .sd-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* Tablets */
 
 @media (max-width: 800px) {
   .student-dashboard {
@@ -395,13 +513,15 @@
   }
 
   .student-dashboard .sd-home {
-    margin-top: 12px;
+    margin-top: 16px;
   }
 
   .student-dashboard .sd-main {
     padding: 24px 18px;
   }
 }
+
+/* Mobile screens */
 
 @media (max-width: 540px) {
   .student-dashboard .sd-stats,
@@ -411,5 +531,13 @@
 
   .student-dashboard .sd-welcome > svg {
     display: none;
+  }
+}
+
+/* Reduced motion preference */
+
+@media (prefers-reduced-motion: reduce) {
+  .student-dashboard :is(button, a) {
+    transition: none;
   }
 }
