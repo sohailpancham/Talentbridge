@@ -1,0 +1,352 @@
+.student-activity {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 28px 24px 64px;
+  color: #172348;
+}
+
+.student-activity * {
+  box-sizing: border-box;
+}
+
+.student-activity .sa-header,
+.student-activity .sa-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.student-activity .sa-header {
+  margin-bottom: 24px;
+}
+
+.student-activity .sa-brand {
+  color: #0649e8;
+  font-size: 25px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.student-activity nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.student-activity nav a {
+  color: #1748ce;
+  text-decoration: none;
+}
+
+.student-activity .sa-notice {
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: #edf3ff;
+  color: #425b87;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.student-activity .sa-card {
+  margin-top: 24px;
+  padding: 28px;
+  border: 1px solid #e0e7f2;
+  border-radius: 18px;
+  background: white;
+  box-shadow: 0 8px 28px rgb(30 55 100 / 4%);
+}
+
+.student-activity h1 {
+  font-size: clamp(25px, 4vw, 34px);
+  line-height: 1.25;
+}
+
+.student-activity h2 {
+  font-size: 20px;
+  margin-top: 26px;
+}
+
+.student-activity .sa-title-row h2 {
+  margin-top: 0;
+}
+
+.student-activity p,
+.student-activity li {
+  line-height: 1.7;
+}
+
+.student-activity li {
+  margin-bottom: 8px;
+}
+
+.student-activity .sa-muted {
+  color: #65748d;
+  font-size: 14px;
+}
+
+.student-activity .sa-pay {
+  color: #0649e8;
+  font-size: 20px;
+}
+
+.student-activity .sa-tags,
+.student-activity .sa-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.student-activity .sa-actions {
+  margin-top: 26px;
+}
+
+.student-activity .sa-tag,
+.student-activity .sa-tags span {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #edf3ff;
+  color: #2458cf;
+  font-size: 13px;
+}
+
+.student-activity .sa-primary,
+.student-activity .sa-secondary,
+.student-dashboard .sd-details-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 11px 18px;
+  border: 1px solid #2458e6;
+  border-radius: 11px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.student-activity .sa-primary,
+.student-dashboard .sd-details-link {
+  background: #0649e8;
+  color: white;
+}
+
+.student-activity .sa-secondary {
+  background: #f7f9ff;
+  color: #1748ce;
+}
+
+.student-dashboard .sd-details-link {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.student-activity label {
+  display: block;
+  margin: 18px 0 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.student-activity input,
+.student-activity textarea {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #ccd8ee;
+  border-radius: 10px;
+  background: white;
+  color: #172348;
+  font: inherit;
+}
+
+.student-activity textarea {
+  resize: vertical;
+}
+
+.student-activity summary {
+  cursor: pointer;
+  color: #1748ce;
+  font-weight: 600;
+}
+
+.student-activity .sa-introduction {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.student-activity .sa-empty {
+  text-align: center;
+  padding: 40px 24px;
+}
+
+.student-activity button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.student-activity :is(button, a, input, textarea, summary):focus-visible,
+.student-dashboard .sd-details-link:focus-visible {
+  outline: 3px solid #91afff;
+  outline-offset: 4px;
+}
+
+@media (max-width: 600px) {
+  .student-activity {
+    padding: 20px 16px 40px;
+  }
+
+  .student-activity .sa-card {
+    padding: 20px;
+  }
+
+  .student-activity nav {
+    gap: 14px;
+    font-size: 13px;
+  }
+}
+.student-activity .sa-profile-attachment,
+.student-activity .sa-attached-profile {
+  margin: 20px 0;
+  padding: 18px;
+  border: 1px solid #dce5f5;
+  border-radius: 14px;
+  background: #f7f9ff;
+  overflow-wrap: anywhere;
+}
+
+.student-activity .sa-attach-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.student-activity .sa-attach-label input {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  accent-color: #0649e8;
+}
+.student-activity .sa-back-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 11px 18px;
+  border: 1px solid #0649e8;
+  border-radius: 12px;
+  background: #0649e8;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 3px 0 #0335ad;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.student-activity .sa-back-button:hover {
+  background: #053bc2;
+  color: #ffffff;
+}
+
+.student-activity .sa-back-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #0335ad;
+}
+
+.student-activity .sa-back-button:focus-visible {
+  outline: 3px solid #96b4ff;
+  outline-offset: 4px;
+}
+.student-activity .sa-header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.student-activity :is(
+  .sa-header nav a,
+  .sa-back-button,
+  .sa-primary,
+  .sa-secondary,
+  .sa-profile-attachment a,
+  .sa-card details a
+) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 44px;
+  padding: 11px 18px;
+  box-sizing: border-box;
+
+  background: #0649e8;
+  color: #ffffff;
+  border: 1px solid #0649e8;
+  border-radius: 12px;
+  box-shadow: 0 3px 0 #0335ad;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+
+  transition:
+    background 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.student-activity :is(
+  .sa-header nav a,
+  .sa-back-button,
+  .sa-primary,
+  .sa-secondary,
+  .sa-profile-attachment a,
+  .sa-card details a
+):hover {
+  background: #053bc2;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.student-activity :is(
+  .sa-header nav a,
+  .sa-back-button,
+  .sa-primary,
+  .sa-secondary,
+  .sa-profile-attachment a,
+  .sa-card details a
+):active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #0335ad;
+}
+
+.student-activity :is(
+  .sa-header nav a,
+  .sa-back-button,
+  .sa-primary,
+  .sa-secondary,
+  .sa-profile-attachment a,
+  .sa-card details a
+):focus-visible {
+  outline: 3px solid #96b4ff;
+  outline-offset: 4px;
+}
+
+.student-activity button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
