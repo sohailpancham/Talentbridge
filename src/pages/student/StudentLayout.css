@@ -1,0 +1,273 @@
+/* Shared shell for all student pages */
+
+.student-layout {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  min-height: 100vh;
+  background: #f5f7fc;
+  color: #172348;
+}
+
+.student-layout * {
+  box-sizing: border-box;
+}
+
+.student-layout .sl-sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 28px 18px;
+  background: #ffffff;
+  border-right: 1px solid #e5eaf3;
+}
+
+.student-layout .sl-brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.student-layout .sl-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #0649e8;
+  font-size: 22px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.student-layout .sl-caption {
+  margin: 32px 0 18px;
+  color: #52617b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.student-layout .sl-navigation {
+  display: grid;
+  gap: 14px;
+}
+
+/* Blue raised buttons shared by navigation and page actions */
+
+.student-layout .sl-button,
+.student-layout .student-profile .sp-primary,
+.student-layout .student-profile .sp-secondary,
+.student-layout .student-profile .sp-project-actions a,
+.student-layout .student-profile .sp-remove,
+.student-layout .student-activity .sa-primary,
+.student-layout .student-activity .sa-secondary,
+.student-layout .student-activity .sa-back-button,
+.student-layout .student-activity .sa-profile-attachment a,
+.student-layout .student-activity details a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 11px 16px;
+  border: 1px solid #0649e8;
+  border-radius: 12px;
+  background: #0649e8;
+  color: #ffffff;
+  box-shadow: 0 3px 0 #0335ad;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.student-layout .sl-button:hover,
+.student-layout .student-profile .sp-primary:hover,
+.student-layout .student-profile .sp-secondary:hover,
+.student-layout .student-profile .sp-project-actions a:hover,
+.student-layout .student-profile .sp-remove:hover,
+.student-layout .student-activity .sa-primary:hover,
+.student-layout .student-activity .sa-secondary:hover,
+.student-layout .student-activity .sa-back-button:hover,
+.student-layout .student-activity .sa-profile-attachment a:hover,
+.student-layout .student-activity details a:hover {
+  background: #053bc2;
+  color: #ffffff;
+}
+
+.student-layout .sl-button:active,
+.student-layout .student-profile .sp-primary:active,
+.student-layout .student-profile .sp-secondary:active,
+.student-layout .student-profile .sp-project-actions a:active,
+.student-layout .student-profile .sp-remove:active,
+.student-layout .student-activity .sa-primary:active,
+.student-layout .student-activity .sa-secondary:active,
+.student-layout .student-activity .sa-back-button:active,
+.student-layout .student-activity .sa-profile-attachment a:active,
+.student-layout .student-activity details a:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #0335ad;
+}
+
+.student-layout .sl-nav-link,
+.student-layout .sl-home {
+  width: 100%;
+  justify-content: flex-start;
+  text-align: left;
+  font-size: 13px;
+}
+
+.student-layout .sl-nav-link.is-active {
+  background: #0335ad;
+  box-shadow:
+    0 3px 0 #02267d,
+    inset 0 0 0 2px #aec7ff;
+}
+
+.student-layout .sl-navigation svg {
+  flex-shrink: 0;
+}
+
+.student-layout .sl-count {
+  margin-left: auto;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #0335ad;
+}
+
+.student-layout .sl-home {
+  margin-top: 16px;
+}
+
+.student-layout .sl-menu-toggle {
+  display: none;
+}
+
+.student-layout .sl-content {
+  min-width: 0;
+  padding: 28px 32px 48px;
+}
+
+/* Existing pages now fit inside the shared sidebar layout. */
+
+.student-layout .student-dashboard {
+  display: block;
+  min-height: 0;
+  background: transparent;
+}
+
+.student-layout .student-dashboard .sd-main {
+  padding: 0;
+}
+
+.student-layout .student-profile,
+.student-layout .student-activity {
+  width: 100%;
+  max-width: 1100px;
+  min-width: 0;
+  min-height: 0;
+  margin: 0 auto;
+  padding: 0;
+  background: transparent;
+}
+
+.student-layout .student-profile .sp-intro {
+  flex-wrap: wrap;
+}
+
+.student-layout .student-activity .sa-header {
+  flex-wrap: wrap;
+}
+
+.student-layout .sl-skip {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  padding: 12px 18px;
+  border-radius: 8px;
+  background: #0649e8;
+  color: #ffffff;
+  transform: translateY(-200%);
+}
+
+.student-layout .sl-skip:focus {
+  transform: translateY(0);
+}
+
+.student-layout a:focus-visible,
+.student-layout button:focus-visible {
+  outline: 3px solid #8255ef;
+  outline-offset: 4px;
+}
+
+.student-layout .student-activity button:disabled,
+.student-layout .student-profile button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+@media (max-width: 1050px) {
+  .student-layout .student-profile .sp-columns,
+  .student-layout .student-profile .sp-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 800px) {
+  .student-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .student-layout .sl-sidebar {
+    position: static;
+    height: auto;
+    overflow: visible;
+    padding: 18px;
+    border-right: 0;
+    border-bottom: 1px solid #e5eaf3;
+  }
+
+  .student-layout .sl-menu-toggle {
+    display: inline-flex;
+  }
+
+  .student-layout .sl-caption {
+    display: none;
+  }
+
+  .student-layout .sl-navigation {
+    display: none;
+    margin-top: 22px;
+  }
+
+  .student-layout .sl-navigation.is-open {
+    display: grid;
+  }
+
+  .student-layout .sl-content {
+    padding: 24px 18px 40px;
+  }
+
+  .student-layout .sl-brand {
+    font-size: 19px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .student-layout a,
+  .student-layout button {
+    transition: none;
+  }
+}

@@ -1,14 +1,15 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/public/Home";
 import Login from "./pages/public/Login";
-import "./styles/global.css";
 import StudentSignup from "./pages/public/StudentSignup";
 import CompanySignup from "./pages/public/CompanySignup";
 import StudentDashboard from "./pages/student/StudentDashboard";
 import StudentProfile from "./pages/student/StudentProfile";
+import StudentLayout from "./pages/student/StudentLayout";
 import StudentApplications, {
   OpportunityDetails,
 } from "./pages/student/StudentApplications";
+import "./styles/global.css";
 
 export default function App() {
   return (
@@ -18,22 +19,35 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/student/signup" element={<StudentSignup />} />
         <Route path="/company/signup" element={<CompanySignup />} />
-        <Route path="/student/dashboard" element={<StudentDashboard />} />
-        <Route path="/student/profile" element={<StudentProfile />} />
-        <Route
-  path="/student/opportunities/:id"
-  element={<OpportunityDetails />}
-/>
 
-<Route
-  path="/student/applications"
-  element={<StudentApplications />}
-/>
+        <Route element={<StudentLayout />}>
+          <Route
+            path="/student/dashboard"
+            element={<StudentDashboard key="dashboard" />}
+          />
+          <Route
+            path="/student/explore"
+            element={<StudentDashboard key="explore" section="explore" />}
+          />
+          <Route
+            path="/student/saved"
+            element={<StudentDashboard key="saved" section="saved" />}
+          />
+          <Route path="/student/profile" element={<StudentProfile />} />
+          <Route
+            path="/student/applications"
+            element={<StudentApplications />}
+          />
+          <Route
+            path="/student/opportunities/:id"
+            element={<OpportunityDetails />}
+          />
+          <Route
+            path="/student/opportunities/:id/apply"
+            element={<OpportunityDetails applicationPage />}
+          />
+        </Route>
 
-<Route
-  path="/student/opportunities/:id/apply"
-  element={<OpportunityDetails applicationPage />}
-/>
         <Route
           path="*"
           element={
