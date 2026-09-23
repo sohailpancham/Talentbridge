@@ -1,8 +1,7 @@
 import ProfileAvatar from "./ProfileAvatar";
 import { useState } from "react";
 import useBrowserDraft from "./useBrowserDraft";
-import { Link } from "react-router-dom";
-import { GraduationCap, Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2 } from "lucide-react";
 import "./StudentProfile.css";
 
 const emptyProject = {
@@ -12,27 +11,35 @@ const emptyProject = {
 };
 
 export default function StudentProfile() {
-  const [draft, setDraft, storage] = useBrowserDraft("talentbridge-student-profile-v1", {
-    profile: {
-    name: "",
-    headline: "",
-    college: "",
-    course: "",
-    year: "",
-    location: "",
-    availability: "",
-    bio: "",
-    skills: "",
+  const [draft, setDraft, storage] = useBrowserDraft(
+    "talentbridge-student-profile-v1",
+    {
+      profile: {
+        name: "",
+        headline: "",
+        college: "",
+        course: "",
+        year: "",
+        location: "",
+        availability: "",
+        bio: "",
+        skills: "",
+      },
+      projects: [],
     },
-    projects: [],
-  });
+  );
   const { profile, projects } = draft;
-  const setProfile = (update) => setDraft(current => ({
-    ...current, profile: typeof update === "function" ? update(current.profile) : update,
-  }));
-  const setProjects = (update) => setDraft(current => ({
-    ...current, projects: typeof update === "function" ? update(current.projects) : update,
-  }));
+  const setProfile = (update) =>
+    setDraft((current) => ({
+      ...current,
+      profile: typeof update === "function" ? update(current.profile) : update,
+    }));
+  const setProjects = (update) =>
+    setDraft((current) => ({
+      ...current,
+      projects:
+        typeof update === "function" ? update(current.projects) : update,
+    }));
 
   const [editing, setEditing] = useState(true);
   const [project, setProject] = useState(emptyProject);
@@ -95,27 +102,24 @@ export default function StudentProfile() {
   }
 
   if (!storage.ready) {
-    return <main className="student-profile"><p role="status">{storage.error || storage.status}</p></main>;
+    return (
+      <main className="student-profile">
+        <p role="status">{storage.error || storage.status}</p>
+      </main>
+    );
   }
 
   const skills = [
     ...new Set(
-      profile.skills.split(",").map((skill) => skill.trim()).filter(Boolean)
+      profile.skills
+        .split(",")
+        .map((skill) => skill.trim())
+        .filter(Boolean),
     ),
   ];
 
   return (
     <main className="student-profile">
-      <header className="sp-header">
-        <Link to="/" className="sp-brand">
-          <GraduationCap size={28} aria-hidden="true" />
-          TalentBridge
-        </Link>
-        <Link to="/student/dashboard" className="sp-secondary">
-  ← Dashboard
-</Link>
-      </header>
-
       <div className="sp-notice">
         {storage.status} · Local preview on this browser only.
         {storage.error && <p role="alert">{storage.error}</p>}
@@ -143,7 +147,9 @@ export default function StudentProfile() {
         </button>
       </section>
 
-      <p className="sp-message" role="status">{message}</p>
+      <p className="sp-message" role="status">
+        {message}
+      </p>
 
       {editing && (
         <section className="sp-card" id="sp-editor">
@@ -294,7 +300,9 @@ export default function StudentProfile() {
         </p>
 
         {projects.length === 0 && (
-          <p className="sp-empty">No projects yet. Add your first project below.</p>
+          <p className="sp-empty">
+            No projects yet. Add your first project below.
+          </p>
         )}
 
         <div className="sp-projects">
@@ -316,7 +324,7 @@ export default function StudentProfile() {
                   aria-label={`Remove ${item.title}`}
                   onClick={() => {
                     setProjects((current) =>
-                      current.filter((entry) => entry.id !== item.id)
+                      current.filter((entry) => entry.id !== item.id),
                     );
                     setMessage("Project removed.");
                   }}
