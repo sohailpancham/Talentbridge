@@ -1,0 +1,105 @@
+.student-support {
+  max-width: 1100px;
+  margin: 0 auto;
+  color: #172348;
+}
+.student-support .ss-heading {
+  margin-bottom: 28px;
+}
+.student-support .ss-eyebrow {
+  color: #0649e8;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+.student-support h1 {
+  margin: 12px 0;
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1.2;
+}
+.student-support h2 {
+  margin: 0 0 14px;
+  font-size: 22px;
+}
+.student-support p {
+  color: #52617b;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.student-support .ss-card {
+  margin-bottom: 24px;
+  padding: 28px;
+  background: #fff;
+  border: 1px solid #dce5f5;
+  border-radius: 16px;
+}
+.student-support fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.student-support label {
+  display: block;
+  margin-top: 24px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.student-support select {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 480px;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid #cbd8ee;
+  border-radius: 10px;
+  background: #fff;
+  color: #172348;
+  font: inherit;
+}
+.student-support .ss-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 24px;
+}
+.student-support .ss-faq {
+  padding: 18px 0;
+  border-bottom: 1px solid #e5eaf3;
+}
+.student-support .ss-faq:last-child {
+  border-bottom: 0;
+}
+.student-support summary {
+  color: #172348;
+  cursor: pointer;
+  font-weight: 600;
+  line-height: 1.6;
+}
+.student-support :is(select, summary):focus-visible {
+  outline: 3px solid #8255ef;
+  outline-offset: 4px;
+}
+.student-support .ss-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.student-support fieldset:disabled select {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+@media (max-width: 540px) {
+  .student-support .ss-card {
+    padding: 20px;
+  }
+  .student-support .ss-actions {
+    flex-direction: column;
+  }
+}

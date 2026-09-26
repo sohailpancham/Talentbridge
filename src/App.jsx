@@ -5,6 +5,9 @@ import StudentSignup from "./pages/public/StudentSignup";
 import CompanySignup from "./pages/public/CompanySignup";
 import StudentDashboard from "./pages/student/StudentDashboard";
 import StudentProfile from "./pages/student/StudentProfile";
+import StudentSettings from "./pages/student/StudentSettings";
+import StudentHelp from "./pages/student/StudentHelp";
+import { StudentStart } from "./pages/student/StudentPreferences";
 import StudentLayout from "./pages/student/StudentLayout";
 import StudentApplications, {
   OpportunityDetails,
@@ -21,6 +24,9 @@ export default function App() {
         <Route path="/company/signup" element={<CompanySignup />} />
 
         <Route element={<StudentLayout />}>
+          <Route path="/student" element={<StudentStart />} />
+          <Route path="/student/settings" element={<StudentSettings />} />
+          <Route path="/student/help" element={<StudentHelp />} />
           <Route
             path="/student/dashboard"
             element={<StudentDashboard key="dashboard" />}

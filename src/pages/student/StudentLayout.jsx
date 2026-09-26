@@ -9,8 +9,11 @@ import {
   Bookmark,
   Menu,
   ArrowLeft,
+  Settings,
+  CircleHelp,
 } from "lucide-react";
 import { StudentActivityProvider, useStudentActivity } from "./StudentActivity";
+import { StudentPreferencesProvider } from "./StudentPreferences";
 import "./StudentLayout.css";
 
 function StudentShell() {
@@ -50,6 +53,8 @@ function StudentShell() {
       icon: Bookmark,
       count: activity.savedIds.length,
     },
+    { path: "/student/settings", label: "Settings", icon: Settings },
+    { path: "/student/help", label: "Help & Support", icon: CircleHelp },
   ];
 
   return (
@@ -123,7 +128,9 @@ function StudentShell() {
 export default function StudentLayout() {
   return (
     <StudentActivityProvider>
-      <StudentShell />
+      <StudentPreferencesProvider>
+        <StudentShell />
+      </StudentPreferencesProvider>
     </StudentActivityProvider>
   );
 }

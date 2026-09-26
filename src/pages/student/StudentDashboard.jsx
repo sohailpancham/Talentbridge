@@ -10,10 +10,23 @@ import {
   MapPin,
   Clock,
 } from "lucide-react";
+import { useStudentPreferences } from "./StudentPreferences";
 import "./StudentDashboard.css";
 
 export default function StudentDashboard({ section = "dashboard" }) {
-  const [filter, setFilter] = useState("All");
+  const { preferences, storage } = useStudentPreferences();
+  if (!storage.ready && !storage.error)
+    return <p role="status">Loading preferences…</p>;
+  return (
+    <StudentDashboardContent
+      section={section}
+      defaultType={preferences.opportunityType}
+    />
+  );
+}
+
+function StudentDashboardContent({ section, defaultType }) {
+  const [filter, setFilter] = useState(defaultType);
   const [search, setSearch] = useState("");
   const [announcement, setAnnouncement] = useState("");
   const [activity, setActivity, storage] = useStudentActivity();
