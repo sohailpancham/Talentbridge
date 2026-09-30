@@ -1,3 +1,4 @@
+import { accountStorageKey, useAuth } from "../../auth/AuthContext";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { opportunities } from "./opportunities";
@@ -27,9 +28,11 @@ function StorageStatus({ storage }) {
     </>
   );
 }
-function readProfileAttachment() {
+function readProfileAttachment(userId) {
   const saved = JSON.parse(
-    localStorage.getItem("talentbridge-student-profile-v1") || "null",
+    localStorage.getItem(
+      accountStorageKey(userId, "talentbridge-student-profile-v1"),
+    ) || "null",
   );
 
   const profile = saved?.profile;
@@ -77,6 +80,7 @@ function readProfileAttachment() {
 }
 
 export function OpportunityDetails({ applicationPage = false }) {
+  const { user } = useAuth();
   const { id } = useParams();
   const opportunity = opportunities.find((item) => item.id === Number(id));
 
@@ -125,7 +129,7 @@ export function OpportunityDetails({ applicationPage = false }) {
 
     if (attachProfile) {
       try {
-        profileAttachment = readProfileAttachment();
+        profileAttachment = readProfileAttachment(user.id);
       } catch {
         setMessage(
           "We couldn’t attach your profile. Open My Profile, complete your name and skills, and wait for “Saved in this browser”. Then try again.",

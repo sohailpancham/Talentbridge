@@ -2,7 +2,7 @@
   max-width: 1080px;
   margin: 0 auto;
   padding: 28px 24px 64px;
-  color: #172348;
+  color: var(--tb-text);
 }
 
 .student-activity * {
@@ -23,7 +23,7 @@
 }
 
 .student-activity .sa-brand {
-  color: #0649e8;
+  color: var(--tb-link);
   font-size: 25px;
   font-weight: 800;
   text-decoration: none;
@@ -36,15 +36,15 @@
 }
 
 .student-activity nav a {
-  color: #1748ce;
+  color: var(--tb-link);
   text-decoration: none;
 }
 
 .student-activity .sa-notice {
   padding: 14px 18px;
   border-radius: 12px;
-  background: #edf3ff;
-  color: #425b87;
+  background: var(--tb-soft);
+  color: var(--tb-muted);
   font-size: 13px;
   line-height: 1.6;
   margin-bottom: 24px;
@@ -53,9 +53,9 @@
 .student-activity .sa-card {
   margin-top: 24px;
   padding: 28px;
-  border: 1px solid #e0e7f2;
+  border: 1px solid var(--tb-border);
   border-radius: 18px;
-  background: white;
+  background: var(--tb-surface);
   box-shadow: 0 8px 28px rgb(30 55 100 / 4%);
 }
 
@@ -83,12 +83,12 @@
 }
 
 .student-activity .sa-muted {
-  color: #65748d;
+  color: var(--tb-muted);
   font-size: 14px;
 }
 
 .student-activity .sa-pay {
-  color: #0649e8;
+  color: var(--tb-link);
   font-size: 20px;
 }
 
@@ -109,8 +109,8 @@
   display: inline-block;
   padding: 6px 12px;
   border-radius: 20px;
-  background: #edf3ff;
-  color: #2458cf;
+  background: var(--tb-soft);
+  color: var(--tb-link);
   font-size: 13px;
 }
 
@@ -138,8 +138,8 @@
 }
 
 .student-activity .sa-secondary {
-  background: #f7f9ff;
-  color: #1748ce;
+  background: var(--tb-soft);
+  color: var(--tb-link);
 }
 
 .student-dashboard .sd-details-link {
@@ -158,10 +158,10 @@
 .student-activity textarea {
   width: 100%;
   padding: 13px;
-  border: 1px solid #ccd8ee;
+  border: 1px solid var(--tb-border);
   border-radius: 10px;
-  background: white;
-  color: #172348;
+  background: var(--tb-surface);
+  color: var(--tb-text);
   font: inherit;
 }
 
@@ -171,7 +171,7 @@
 
 .student-activity summary {
   cursor: pointer;
-  color: #1748ce;
+  color: var(--tb-link);
   font-weight: 600;
 }
 
@@ -214,9 +214,9 @@
 .student-activity .sa-attached-profile {
   margin: 20px 0;
   padding: 18px;
-  border: 1px solid #dce5f5;
+  border: 1px solid var(--tb-border);
   border-radius: 14px;
-  background: #f7f9ff;
+  background: var(--tb-soft);
   overflow-wrap: anywhere;
 }
 
@@ -247,7 +247,10 @@
   font-weight: 600;
   text-decoration: none;
   box-shadow: 0 3px 0 #0335ad;
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .student-activity .sa-back-button:hover {
@@ -270,14 +273,15 @@
   gap: 12px;
 }
 
-.student-activity :is(
-  .sa-header nav a,
-  .sa-back-button,
-  .sa-primary,
-  .sa-secondary,
-  .sa-profile-attachment a,
-  .sa-card details a
-) {
+.student-activity
+  :is(
+    .sa-header nav a,
+    .sa-back-button,
+    .sa-primary,
+    .sa-secondary,
+    .sa-profile-attachment a,
+    .sa-card details a
+  ) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -307,39 +311,42 @@
     box-shadow 0.2s;
 }
 
-.student-activity :is(
-  .sa-header nav a,
-  .sa-back-button,
-  .sa-primary,
-  .sa-secondary,
-  .sa-profile-attachment a,
-  .sa-card details a
-):hover {
+.student-activity
+  :is(
+    .sa-header nav a,
+    .sa-back-button,
+    .sa-primary,
+    .sa-secondary,
+    .sa-profile-attachment a,
+    .sa-card details a
+  ):hover {
   background: #053bc2;
   color: #ffffff;
   text-decoration: none;
 }
 
-.student-activity :is(
-  .sa-header nav a,
-  .sa-back-button,
-  .sa-primary,
-  .sa-secondary,
-  .sa-profile-attachment a,
-  .sa-card details a
-):active {
+.student-activity
+  :is(
+    .sa-header nav a,
+    .sa-back-button,
+    .sa-primary,
+    .sa-secondary,
+    .sa-profile-attachment a,
+    .sa-card details a
+  ):active {
   transform: translateY(2px);
   box-shadow: 0 1px 0 #0335ad;
 }
 
-.student-activity :is(
-  .sa-header nav a,
-  .sa-back-button,
-  .sa-primary,
-  .sa-secondary,
-  .sa-profile-attachment a,
-  .sa-card details a
-):focus-visible {
+.student-activity
+  :is(
+    .sa-header nav a,
+    .sa-back-button,
+    .sa-primary,
+    .sa-secondary,
+    .sa-profile-attachment a,
+    .sa-card details a
+  ):focus-visible {
   outline: 3px solid #96b4ff;
   outline-offset: 4px;
 }

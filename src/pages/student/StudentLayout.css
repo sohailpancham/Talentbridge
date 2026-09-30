@@ -1,11 +1,38 @@
+/* Shared student theme tokens. */
+.student-layout {
+  --tb-canvas: #f5f7fc;
+  --tb-surface: #ffffff;
+  --tb-soft: #edf3ff;
+  --tb-tint: #eee7ff;
+  --tb-text: #172348;
+  --tb-muted: #52617b;
+  --tb-border: #d7e1ef;
+  --tb-link: #0649e8;
+  --tb-purple: #7024cd;
+  --tb-danger: #bb3434;
+  color-scheme: light;
+}
+.student-layout[data-theme="dark"] {
+  --tb-canvas: #101827;
+  --tb-surface: #192437;
+  --tb-soft: #23324b;
+  --tb-tint: #302b48;
+  --tb-text: #edf2fa;
+  --tb-muted: #b8c5d9;
+  --tb-border: #3c4d65;
+  --tb-link: #99baff;
+  --tb-purple: #c9a5ff;
+  --tb-danger: #ffaaaa;
+  color-scheme: dark;
+}
 /* Shared shell for all student pages */
 
 .student-layout {
   display: grid;
   grid-template-columns: 250px minmax(0, 1fr);
   min-height: 100vh;
-  background: #f5f7fc;
-  color: #172348;
+  background: var(--tb-canvas);
+  color: var(--tb-text);
 }
 
 .student-layout * {
@@ -19,8 +46,8 @@
   height: 100vh;
   overflow-y: auto;
   padding: 28px 18px;
-  background: #ffffff;
-  border-right: 1px solid #e5eaf3;
+  background: var(--tb-surface);
+  border-right: 1px solid var(--tb-border);
 }
 
 .student-layout .sl-brand-row {
@@ -34,7 +61,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #0649e8;
+  color: var(--tb-link);
   font-size: 22px;
   font-weight: 800;
   text-decoration: none;
@@ -42,7 +69,7 @@
 
 .student-layout .sl-caption {
   margin: 32px 0 18px;
-  color: #52617b;
+  color: var(--tb-muted);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -140,7 +167,7 @@
   margin-left: auto;
   padding: 2px 6px;
   border-radius: 6px;
-  background: #ffffff;
+  background: var(--tb-surface);
   color: #0335ad;
 }
 
@@ -236,7 +263,7 @@
     overflow: visible;
     padding: 18px;
     border-right: 0;
-    border-bottom: 1px solid #e5eaf3;
+    border-bottom: 1px solid var(--tb-border);
   }
 
   .student-layout .sl-menu-toggle {
@@ -270,4 +297,123 @@
   .student-layout button {
     transition: none;
   }
+}
+/* Clean sidebar navigation */
+.student-layout .sl-sidebar .sl-button {
+  min-height: 44px;
+  padding: 12px 14px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--tb-muted);
+  box-shadow: none;
+  font-size: 13px;
+  font-weight: 500;
+  transform: none;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+.student-layout .sl-navigation {
+  gap: 8px;
+}
+
+/* Hover */
+.student-layout .sl-sidebar .sl-button:hover {
+  background: var(--tb-soft);
+  color: var(--tb-link);
+  box-shadow: none;
+}
+
+/* Only the current page is blue */
+.student-layout .sl-sidebar .sl-nav-link.is-active,
+.student-layout .sl-sidebar .sl-nav-link.is-active:hover {
+  background: #0649e8;
+  color: #ffffff;
+  border-color: #0649e8;
+  box-shadow: none;
+  font-weight: 600;
+}
+
+/* Keep buttons steady when clicked */
+.student-layout .sl-sidebar .sl-button:active {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Keyboard focus */
+.student-layout .sl-sidebar .sl-button:focus-visible {
+  outline: 3px solid #93b4ff;
+  outline-offset: 2px;
+}
+
+/* Count badges */
+.student-layout .sl-sidebar .sl-count {
+  min-width: 22px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--tb-soft);
+  color: var(--tb-muted);
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.student-layout .sl-sidebar .sl-nav-link.is-active .sl-count {
+  background: var(--tb-surface);
+  color: var(--tb-link);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .student-layout .sl-sidebar .sl-button {
+    transition: none;
+  }
+}
+.student-layout .sl-account {
+  margin: -6px 0 22px;
+  color: var(--tb-text);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.student-layout .sl-logout .sl-button {
+  width: 100%;
+  justify-content: flex-start;
+}
+.student-layout .sl-logout p {
+  color: var(--tb-danger);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.student-layout button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.student-layout input::placeholder,
+.student-layout textarea::placeholder {
+  color: var(--tb-muted);
+  opacity: 1;
+}
+.student-layout .st-theme-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.student-layout .st-theme-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid var(--tb-border);
+  border-radius: 10px;
+  background: var(--tb-soft);
+  cursor: pointer;
+}
+.student-layout .st-theme-choice input {
+  width: 18px;
+  height: 18px;
+  accent-color: #0649e8;
+}
+.student-layout a {
+  color: var(--tb-link);
 }

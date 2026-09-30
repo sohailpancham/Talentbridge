@@ -30,7 +30,7 @@ const questions = [
   {
     question: "Why is my saved list empty?",
     answer:
-      "Check the search and type filters first. Choose All and clear the search. Also check that you are using the same browser and site address where you saved the opportunity.",
+      "Check the search and type filters first. Choose All and clear the search. Also check that you are signed into the same account and signed into the same account and using the same browser and site address where you saved the opportunity.",
   },
   {
     question: "What if saving fails?",

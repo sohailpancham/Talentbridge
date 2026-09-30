@@ -1,13 +1,13 @@
 .student-support {
   max-width: 1100px;
   margin: 0 auto;
-  color: #172348;
+  color: var(--tb-text);
 }
 .student-support .ss-heading {
   margin-bottom: 28px;
 }
 .student-support .ss-eyebrow {
-  color: #0649e8;
+  color: var(--tb-link);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -22,15 +22,15 @@
   font-size: 22px;
 }
 .student-support p {
-  color: #52617b;
+  color: var(--tb-muted);
   line-height: 1.7;
   overflow-wrap: anywhere;
 }
 .student-support .ss-card {
   margin-bottom: 24px;
   padding: 28px;
-  background: #fff;
-  border: 1px solid #dce5f5;
+  background: var(--tb-surface);
+  border: 1px solid var(--tb-border);
   border-radius: 16px;
 }
 .student-support fieldset {
@@ -51,10 +51,10 @@
   max-width: 480px;
   min-height: 46px;
   padding: 10px 12px;
-  border: 1px solid #cbd8ee;
+  border: 1px solid var(--tb-border);
   border-radius: 10px;
-  background: #fff;
-  color: #172348;
+  background: var(--tb-surface);
+  color: var(--tb-text);
   font: inherit;
 }
 .student-support .ss-actions {
@@ -65,13 +65,13 @@
 }
 .student-support .ss-faq {
   padding: 18px 0;
-  border-bottom: 1px solid #e5eaf3;
+  border-bottom: 1px solid var(--tb-border);
 }
 .student-support .ss-faq:last-child {
   border-bottom: 0;
 }
 .student-support summary {
-  color: #172348;
+  color: var(--tb-text);
   cursor: pointer;
   font-weight: 600;
   line-height: 1.6;
