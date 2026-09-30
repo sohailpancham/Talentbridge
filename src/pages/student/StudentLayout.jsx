@@ -1,3 +1,5 @@
+import { useAuth } from "../../auth/AuthContext";
+import LogoutButton from "../../auth/LogoutButton";
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import {
@@ -13,10 +15,15 @@ import {
   CircleHelp,
 } from "lucide-react";
 import { StudentActivityProvider, useStudentActivity } from "./StudentActivity";
-import { StudentPreferencesProvider } from "./StudentPreferences";
+import {
+  StudentPreferencesProvider,
+  useStudentPreferences,
+} from "./StudentPreferences";
 import "./StudentLayout.css";
 
 function StudentShell() {
+  const { user } = useAuth();
+  const { preferences } = useStudentPreferences();
   const [menuOpen, setMenuOpen] = useState(false);
   const [activity, , storage] = useStudentActivity();
   const { pathname } = useLocation();
@@ -58,7 +65,7 @@ function StudentShell() {
   ];
 
   return (
-    <div className="student-layout">
+    <div className="student-layout" data-theme={preferences.theme}>
       <a className="sl-skip" href="#student-content">
         Skip to content
       </a>
@@ -83,6 +90,7 @@ function StudentShell() {
         </div>
 
         <p className="sl-caption">STUDENT SPACE</p>
+        <p className="sl-account">{user.fullName}</p>
 
         <nav
           id="student-navigation"
@@ -115,6 +123,7 @@ function StudentShell() {
             <ArrowLeft size={18} aria-hidden="true" />
             Home
           </Link>
+          <LogoutButton />
         </nav>
       </aside>
 
@@ -126,8 +135,9 @@ function StudentShell() {
 }
 
 export default function StudentLayout() {
+  const { user } = useAuth();
   return (
-    <StudentActivityProvider>
+    <StudentActivityProvider key={user.id}>
       <StudentPreferencesProvider>
         <StudentShell />
       </StudentPreferencesProvider>

@@ -5,23 +5,71 @@ import { GraduationCap, Eye, EyeOff } from "lucide-react";
 export default function StudentSignup() {
   const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  async function handleSubmit(event) {
+  event.preventDefault();
 
-    const form = event.currentTarget;
-    const data = new FormData(form);
+  if (isSubmitting) return;
 
-    if (data.get("password") !== data.get("confirmPassword")) {
-      setMessage("Your passwords do not match.");
-      form.elements.namedItem("confirmPassword").focus();
+  const form = event.currentTarget;
+  const data = new FormData(form);
+
+  setMessage("");
+
+  if (data.get("password") !== data.get("confirmPassword")) {
+    setMessage("Your passwords do not match.");
+    form.elements.namedItem("confirmPassword").focus();
+    return;
+  }
+
+  setIsSubmitting(true);
+
+  try {
+    const response = await fetch("/api/auth/student/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fullName: data.get("fullName"),
+        email: data.get("email"),
+        phone: data.get("phone") || "",
+        college: data.get("college"),
+        course: data.get("course"),
+        year: data.get("year"),
+        password: data.get("password"),
+        confirmPassword: data.get("confirmPassword"),
+      }),
+    });
+
+    const result = await response.json().catch(() => null);
+
+    if (!response.ok) {
+      setMessage(
+        result?.message || "Unable to create your account. Please try again."
+      );
+
+      if (result?.field) {
+        form.elements.namedItem(result.field)?.focus();
+      }
+
       return;
     }
 
+    form.reset();
+    setShowPassword(false);
     setMessage(
-      "Your details passed validation. Account creation will be available once the backend is connected. Nothing has been saved yet."
+      "Your student account has been created. Sign-in is not connected yet."
     );
+  } catch {
+    setMessage(
+      "Could not reach the server. Check that the backend is running."
+    );
+  } finally {
+    setIsSubmitting(false);
   }
+}
 
   return (
     <main className="login-page signup-page">
@@ -176,10 +224,14 @@ export default function StudentSignup() {
             </div>
           </div>
 
-          <button type="submit" className="login-submit">
-            Create Student Account
+          <button
+            type="submit"
+            className="login-submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Creating account..." : "Create Student Account"}
           </button>
-
+          
           <p className="login-message" role="status">
             {message}
           </p>

@@ -1,0 +1,15 @@
+.auth-status {
+  max-width: 640px;
+  margin: 64px auto;
+  padding: 24px;
+  color: #172348;
+}
+.auth-status button {
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 8px;
+  background: #0649e8;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}

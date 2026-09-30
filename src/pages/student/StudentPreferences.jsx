@@ -13,6 +13,7 @@ export const opportunityTypes = ["All", "Internship", "Freelance", "Part-time"];
 export const defaultPreferences = {
   startingPage: "/student/dashboard",
   opportunityType: "All",
+  theme: "light",
 };
 
 export function StudentPreferencesProvider({ children }) {
@@ -22,6 +23,7 @@ export function StudentPreferencesProvider({ children }) {
   );
   // Only accept values supported by our routes and filters.
   const preferences = {
+    theme: saved?.theme === "dark" ? "dark" : "light",
     startingPage: startingPages.some(
       (page) => page.value === saved?.startingPage,
     )
@@ -34,6 +36,7 @@ export function StudentPreferencesProvider({ children }) {
 
   function updatePreference(key, value) {
     if (!storage.ready) return;
+    if (key === "theme" && !["light", "dark"].includes(value)) return;
     if (
       key === "startingPage" &&
       !startingPages.some((page) => page.value === value)

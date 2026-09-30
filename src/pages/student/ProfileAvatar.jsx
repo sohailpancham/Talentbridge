@@ -69,11 +69,15 @@ function AvatarPicture({ picture, initials, frame = "original" }) {
 
 export default function ProfileAvatar({ name = "" }) {
   const [savedAvatar, setSavedAvatar, storage] = useBrowserDraft(
-    "student-avatar-v1", { picture: null, frame: "original" }, true
+    "student-avatar-v1",
+    { picture: null, frame: "original" },
+    true,
   );
   const { picture, frame } = savedAvatar;
-  const setPicture = (next) => setSavedAvatar(current => ({ ...current, picture: next }));
-  const setFrame = (next) => setSavedAvatar(current => ({ ...current, frame: next }));
+  const setPicture = (next) =>
+    setSavedAvatar((current) => ({ ...current, picture: next }));
+  const setFrame = (next) =>
+    setSavedAvatar((current) => ({ ...current, frame: next }));
   const [draftFrame, setDraftFrame] = useState("original");
   const [draftAvatar, setDraftAvatar] = useState(avatars[0]);
   const [screen, setScreen] = useState("menu");
@@ -217,8 +221,14 @@ export default function ProfileAvatar({ name = "" }) {
         </span>
       </button>
 
-      <p className="tb-avatar-note" role="status">{storage.status}</p>
-      {storage.error && <p className="tb-avatar-error" role="alert">{storage.error}</p>}
+      <p className="tb-avatar-note" role="status">
+        {storage.status}
+      </p>
+      {storage.error && (
+        <p className="tb-avatar-error" role="alert">
+          {storage.error}
+        </p>
+      )}
 
       <dialog
         ref={dialogRef}
@@ -271,131 +281,128 @@ export default function ProfileAvatar({ name = "" }) {
           />
 
           {screen === "menu" && (
-  <div className="tb-avatar-menu">
-    <button type="button" onClick={() => setScreen("view")}>
-      <Camera size={20} />
-      <span>View or edit profile photo</span>
-      <ChevronRight size={17} />
-    </button>
+            <div className="tb-avatar-menu">
+              <button type="button" onClick={() => setScreen("view")}>
+                <Camera size={20} />
+                <span>View or edit profile photo</span>
+                <ChevronRight size={17} />
+              </button>
 
-    <button
-      type="button"
-      onClick={() => {
-        setDraftFrame(frame);
-        setScreen("frames");
-      }}
-    >
-      <ImagePlus size={20} />
-      <span>Add frame</span>
-      <ChevronRight size={17} />
-    </button>
-  </div>
-)}
-
-         {screen === "view" && (
-  <>
-    <div className="tb-avatar-photo-stage">
-      <AvatarPicture
-        picture={picture}
-        initials={initials}
-        frame={frame}
-      />
-    </div>
-
-    <div className="tb-avatar-toolbar">
-      <button
-        type="button"
-        onClick={() => inputRef.current?.click()}
-      >
-        <Upload size={22} aria-hidden="true" />
-        <span>{picture ? "Update" : "Upload"}</span>
-      </button>
-
-      <button
-        type="button"
-        onClick={() => {
-          setDraftAvatar(
-            picture?.type === "character" ? picture.value : avatars[0]
-          );
-          setScreen("avatars");
-        }}
-      >
-        <Smile size={22} aria-hidden="true" />
-        <span>Avatars</span>
-      </button>
-
-      <button
-        type="button"
-        onClick={() => {
-          setDraftFrame(frame);
-          setScreen("frames");
-        }}
-      >
-        <ImagePlus size={22} aria-hidden="true" />
-        <span>Frames</span>
-      </button>
-
-      {picture && (
-        <button
-          type="button"
-          className="tb-avatar-toolbar-delete"
-          onClick={() => setScreen("remove")}
-        >
-          <Trash2 size={22} aria-hidden="true" />
-          <span>Delete</span>
-        </button>
-      )}
-    </div>
-
-    <p className="tb-avatar-note">
-      JPG, PNG or WebP · Up to 5 MB
-    </p>
-  </>
-)}
-
-{screen === "avatars" && (
-  <>
-    <div className="tb-avatar-large-preview">
-      <AvatarPicture
-        picture={{ type: "character", value: draftAvatar }}
-        initials={initials}
-        frame={frame}
-      />
-    </div>
-
-    <p className="tb-avatar-description">
-      Pick a character for your profile.
-    </p>
-
-    <div className="tb-avatar-grid">
-      {avatars.map((avatar, index) => (
-        <button
-          key={avatar.id}
-          type="button"
-          aria-label={`Choose avatar ${index + 1}`}
-          aria-pressed={draftAvatar.id === avatar.id}
-          onClick={() => setDraftAvatar(avatar)}
-        >
-          <Character avatar={avatar} />
-
-          {draftAvatar.id === avatar.id && (
-            <span className="tb-avatar-selected" aria-hidden="true">
-              <Check size={13} />
-            </span>
+              <button
+                type="button"
+                onClick={() => {
+                  setDraftFrame(frame);
+                  setScreen("frames");
+                }}
+              >
+                <ImagePlus size={20} />
+                <span>Add frame</span>
+                <ChevronRight size={17} />
+              </button>
+            </div>
           )}
-        </button>
-      ))}
-    </div>
 
-    <button
-      type="button"
-      className="tb-avatar-primary"
-      onClick={applyAvatar}
-    >
-      Apply avatar
-    </button>
-  </>
-)}
+          {screen === "view" && (
+            <>
+              <div className="tb-avatar-photo-stage">
+                <AvatarPicture
+                  picture={picture}
+                  initials={initials}
+                  frame={frame}
+                />
+              </div>
+
+              <div className="tb-avatar-toolbar">
+                <button type="button" onClick={() => inputRef.current?.click()}>
+                  <Upload size={22} aria-hidden="true" />
+                  <span>{picture ? "Update" : "Upload"}</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setDraftAvatar(
+                      picture?.type === "character"
+                        ? picture.value
+                        : avatars[0],
+                    );
+                    setScreen("avatars");
+                  }}
+                >
+                  <Smile size={22} aria-hidden="true" />
+                  <span>Avatars</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setDraftFrame(frame);
+                    setScreen("frames");
+                  }}
+                >
+                  <ImagePlus size={22} aria-hidden="true" />
+                  <span>Frames</span>
+                </button>
+
+                {picture && (
+                  <button
+                    type="button"
+                    className="tb-avatar-toolbar-delete"
+                    onClick={() => setScreen("remove")}
+                  >
+                    <Trash2 size={22} aria-hidden="true" />
+                    <span>Delete</span>
+                  </button>
+                )}
+              </div>
+
+              <p className="tb-avatar-note">JPG, PNG or WebP · Up to 5 MB</p>
+            </>
+          )}
+
+          {screen === "avatars" && (
+            <>
+              <div className="tb-avatar-large-preview">
+                <AvatarPicture
+                  picture={{ type: "character", value: draftAvatar }}
+                  initials={initials}
+                  frame={frame}
+                />
+              </div>
+
+              <p className="tb-avatar-description">
+                Pick a character for your profile.
+              </p>
+
+              <div className="tb-avatar-grid">
+                {avatars.map((avatar, index) => (
+                  <button
+                    key={avatar.id}
+                    type="button"
+                    aria-label={`Choose avatar ${index + 1}`}
+                    aria-pressed={draftAvatar.id === avatar.id}
+                    onClick={() => setDraftAvatar(avatar)}
+                  >
+                    <Character avatar={avatar} />
+
+                    {draftAvatar.id === avatar.id && (
+                      <span className="tb-avatar-selected" aria-hidden="true">
+                        <Check size={13} />
+                      </span>
+                    )}
+                  </button>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                className="tb-avatar-primary"
+                onClick={applyAvatar}
+              >
+                Apply avatar
+              </button>
+            </>
+          )}
           {screen === "frames" && (
             <>
               <div className="tb-avatar-large-preview">

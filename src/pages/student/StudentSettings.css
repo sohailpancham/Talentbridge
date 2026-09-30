@@ -6,16 +6,16 @@
 }
 .student-settings .st-category-list {
   overflow: hidden;
-  border: 1px solid #dce5f5;
+  border: 1px solid var(--tb-border);
   border-radius: 16px;
-  background: #ffffff;
+  background: var(--tb-surface);
 }
 .student-settings .st-category {
   display: flex;
   align-items: center;
   gap: 20px;
   padding: 26px;
-  border-bottom: 1px solid #e5eaf3;
+  border-bottom: 1px solid var(--tb-border);
 }
 .student-settings .st-category:last-child {
   border-bottom: 0;
@@ -26,8 +26,8 @@
   flex: 0 0 52px;
   height: 52px;
   border-radius: 12px;
-  background: #edf3ff;
-  color: #0649e8;
+  background: var(--tb-soft);
+  color: var(--tb-link);
 }
 .student-settings .st-category-text {
   flex: 1;
@@ -60,8 +60,8 @@
   padding: 6px 12px;
   margin-bottom: 20px;
   border-radius: 20px;
-  background: #edf3ff;
-  color: #445c85;
+  background: var(--tb-soft);
+  color: var(--tb-muted);
   font-size: 13px;
   font-weight: 600;
 }

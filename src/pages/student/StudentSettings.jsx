@@ -1,7 +1,10 @@
+import { useAuth } from "../../auth/AuthContext";
+import LogoutButton from "../../auth/LogoutButton";
 import { useEffect, useRef } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import {
   UserRound,
+  Palette,
   LockKeyhole,
   Eye,
   ShieldCheck,
@@ -18,6 +21,12 @@ import "./StudentSupport.css";
 import "./StudentSettings.css";
 
 const categories = [
+  {
+    id: "appearance",
+    title: "Appearance",
+    description: "Choose light or dark mode",
+    icon: Palette,
+  },
   {
     id: "account",
     title: "Account preferences",
@@ -51,6 +60,7 @@ const categories = [
 ];
 
 export default function StudentSettings() {
+  const { user } = useAuth();
   const { preferences, updatePreference, resetPreferences, storage } =
     useStudentPreferences();
   const [params] = useSearchParams();
@@ -189,22 +199,51 @@ export default function StudentSettings() {
         </>
       )}
 
+      {category?.id === "appearance" && (
+        <section className="ss-card">
+          <h2>Colour mode</h2>
+          <p>
+            Choose how your student pages look. This preference saves for your
+            account in this browser.
+          </p>
+          <fieldset disabled={!storage.ready} className="st-theme-options">
+            <legend>Choose a theme</legend>
+            {["light", "dark"].map((theme) => (
+              <label key={theme} className="st-theme-choice">
+                <input
+                  type="radio"
+                  name="theme"
+                  value={theme}
+                  checked={preferences.theme === theme}
+                  onChange={() => updatePreference("theme", theme)}
+                />
+                {theme === "light" ? "Light mode" : "Dark mode"}
+              </label>
+            ))}
+          </fieldset>
+          <p role="status">{storage.status}</p>
+          {storage.error && <p role="alert">{storage.error}</p>}
+        </section>
+      )}
       {category?.id === "security" && (
         <section className="ss-card">
-          <span className="st-status">Not connected yet</span>
-          <h2>Protect your account</h2>
+          <span className="st-status">Signed in</span>
+          <h2>Your account</h2>
           <p>
-            This demo does not have authenticated student accounts yet. Password
-            changes, two-step verification, active sessions, and sign out will
-            become available when sign-in is connected.
+            {user.fullName} · {user.email}
           </p>
           <p>
-            Your current profile and applications are stored in this browser.
-            Use your own browser profile on a shared device.
+            You are signed in using a server-managed session. Logout ends this
+            session in this browser.
+          </p>
+          <LogoutButton />
+          <h2>Password and account recovery</h2>
+          <p>
+            Password changes, password recovery, and two-step verification are
+            not available yet.
           </p>
         </section>
       )}
-
       {category?.id === "visibility" && (
         <section className="ss-card">
           <h2>Profile visibility</h2>
@@ -220,8 +259,7 @@ export default function StudentSettings() {
           </p>
           <p>
             Applications are saved locally in this demo and are not sent to
-            companies. Public profile visibility controls will be added when
-            accounts are connected.
+            companies. Public profile visibility controls are not available yet.
           </p>
           <Link className="sl-button" to="/student/applications">
             Review my applications
@@ -233,9 +271,19 @@ export default function StudentSettings() {
         <section className="ss-card">
           <h2>Where your information lives</h2>
           <p>
-            Your profile, photos, saved opportunities, applications, and
-            preferences are saved in this browser when saving succeeds. They do
-            not sync to another device.
+            Your signup details and password hash are stored in the server
+            database. Your password is not saved in browser storage.
+          </p>
+          <p>
+            Your profile drafts, photos, saved opportunities, applications, and
+            preferences are saved in this browser when saving succeeds. They are
+            separated by account in this browser and do not sync to another
+            device. Older demo drafts remain separate and are not automatically
+            assigned to an account.
+          </p>
+          <p>
+            Account separation in the app does not encrypt browser drafts. Use a
+            private browser profile on shared devices.
           </p>
           <h2>Keeping your work</h2>
           <p>
@@ -246,8 +294,8 @@ export default function StudentSettings() {
           <h2>Resetting preferences</h2>
           <p>
             The reset option under Account preferences restores only your
-            browsing preferences. It keeps your profile, photos, saved
-            opportunities, and applications.
+            browsing preferences and light mode. It keeps your profile, photos,
+            saved opportunities, and applications.
           </p>
           <Link className="sl-button" to="/student/settings?section=account">
             Manage preferences

@@ -1,3 +1,4 @@
+import { useAuth } from "../../auth/AuthContext";
 import ProfileAvatar from "./ProfileAvatar";
 import { useState } from "react";
 import useBrowserDraft from "./useBrowserDraft";
@@ -11,11 +12,12 @@ const emptyProject = {
 };
 
 export default function StudentProfile() {
+  const { user } = useAuth();
   const [draft, setDraft, storage] = useBrowserDraft(
     "talentbridge-student-profile-v1",
     {
       profile: {
-        name: "",
+        name: user.fullName || "",
         headline: "",
         college: "",
         course: "",

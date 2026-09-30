@@ -1,22 +1,25 @@
+import { accountStorageKey, useAuth } from "../../auth/AuthContext";
 import { useEffect, useRef, useState } from "react";
 
 let writeQueue = Promise.resolve();
 
-function imageStore(mode, value) {
+function imageStore(mode, key, value) {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open("talentbridge-preview", 1);
     request.onupgradeneeded = () => {
       request.result.createObjectStore("drafts");
     };
     request.onerror = () => reject(request.error);
-    request.onblocked = () => reject(new Error("Storage is busy. Close other TalentBridge tabs and retry."));
+    request.onblocked = () =>
+      reject(
+        new Error("Storage is busy. Close other TalentBridge tabs and retry."),
+      );
     request.onsuccess = () => {
       const db = request.result;
       const transaction = db.transaction("drafts", mode);
       const store = transaction.objectStore("drafts");
-      const operation = mode === "readonly"
-        ? store.get("student-avatar-v1")
-        : store.put(value, "student-avatar-v1");
+      const operation =
+        mode === "readonly" ? store.get(key) : store.put(value, key);
       transaction.oncomplete = () => {
         db.close();
         resolve(operation.result);
@@ -30,7 +33,9 @@ function imageStore(mode, value) {
 }
 
 // The key and storage type must stay constant for each mounted component.
-export default function useBrowserDraft(key, initialValue, images = false) {
+export default function useBrowserDraft(baseKey, initialValue, images = false) {
+  const { user } = useAuth();
+  const key = accountStorageKey(user.id, baseKey);
   const initial = useRef(initialValue);
   const [value, setValue] = useState(initialValue);
   const [ready, setReady] = useState(false);
@@ -44,7 +49,7 @@ export default function useBrowserDraft(key, initialValue, images = false) {
       try {
         await writeQueue;
         const stored = images
-          ? await imageStore("readonly")
+          ? await imageStore("readonly", key)
           : JSON.parse(localStorage.getItem(key) || "null");
         if (!active) return;
         const restored = stored ?? initial.current;
@@ -54,13 +59,17 @@ export default function useBrowserDraft(key, initialValue, images = false) {
         setStatus("Saved in this browser");
       } catch {
         if (active) {
-          setError("Could not load browser storage. Allow site storage, then refresh to try again.");
+          setError(
+            "Could not load browser storage. Allow site storage, then refresh to try again.",
+          );
           setStatus("Storage unavailable");
         }
       }
     }
     load();
-    return () => { active = false; };
+    return () => {
+      active = false;
+    };
   }, [key, images]);
 
   useEffect(() => {
@@ -71,22 +80,28 @@ export default function useBrowserDraft(key, initialValue, images = false) {
     setStatus("Saving…");
     setError("");
     const save = writeQueue.then(async () => {
-      if (images) await imageStore("readwrite", value);
+      if (images) await imageStore("readwrite", key, value);
       else localStorage.setItem(key, serialized);
     });
     writeQueue = save.catch(() => {});
-    save.then(() => {
-      if (active) {
-        lastSaved.current = serialized;
-        setStatus("Saved in this browser");
-      }
-    }).catch(() => {
-      if (active) {
-        setStatus("Not saved");
-        setError("Could not save changes. Browser storage may be full or blocked. Keep this page open and try again after freeing space.");
-      }
-    });
-    return () => { active = false; };
+    save
+      .then(() => {
+        if (active) {
+          lastSaved.current = serialized;
+          setStatus("Saved in this browser");
+        }
+      })
+      .catch(() => {
+        if (active) {
+          setStatus("Not saved");
+          setError(
+            "Could not save changes. Browser storage may be full or blocked. Keep this page open and try again after freeing space.",
+          );
+        }
+      });
+    return () => {
+      active = false;
+    };
   }, [value, ready, key, images]);
 
   return [value, setValue, { ready, status, error }];
