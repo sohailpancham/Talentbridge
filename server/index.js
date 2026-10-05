@@ -4,12 +4,20 @@ import pool from "./db.js";
 import studentAuthRouter from "./student-auth.js";
 import sessionMiddleware from "./session.js";
 import loginRouter from "./login.js";
+import createStudentProfileRouter from "./student-profile.js";
 
 const app = express();
 const port = Number(process.env.PORT || 3001);
 
 app.disable("x-powered-by");
 app.use(helmet());
+// Profile projects can be larger than an authentication request.
+app.use(
+  "/api/student",
+  sessionMiddleware,
+  express.json({ limit: "128kb" }),
+  createStudentProfileRouter(pool),
+);
 app.use(express.json({ limit: "16kb" }));
 
 app.use("/api/auth", sessionMiddleware);
