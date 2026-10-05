@@ -20,22 +20,22 @@ const questions = [
   {
     question: "What does attaching my profile include?",
     answer:
-      "It includes a copy of your profile details and projects at the time you apply. Profile photos are not included in the demo attachment. Editing your profile later does not update an application you already submitted.",
+      "It includes a copy of the profile details and projects saved to your account at the time you apply. Click Save Profile before applying to include your latest edits. Profile photos are not included in the demo attachment. Editing your profile later does not update an application you already submitted.",
   },
   {
     question: "Will my work stay after refresh?",
     answer:
-      "Your profile, photos, saved opportunities, applications, and preferences are stored in this browser when saving succeeds. Wait for the saving status before closing the page. Another browser or device will not have this data. Private browsing and clearing site data may remove it.",
+      "Click Save Profile to store your profile details and projects in your account. They can be loaded in another browser connected to the same server after signing in. Photos, saved opportunities, demo applications, and preferences remain browser-only; clearing site data may remove those items. Unsaved profile edits are not synced.",
   },
   {
     question: "Why is my saved list empty?",
     answer:
-      "Check the search and type filters first. Choose All and clear the search. Also check that you are signed into the same account and signed into the same account and using the same browser and site address where you saved the opportunity.",
+      "Check the search and type filters first. Choose All and clear the search. Also check that you are signed into the same account and using the same browser and site address where you saved the opportunity.",
   },
   {
     question: "What if saving fails?",
     answer:
-      "Keep the page open and read the storage error. Check that your browser allows site storage and has space available. Avoid clearing TalentBridge’s site data because it can remove your saved work.",
+      "Keep the page open and read the error. For profile saving, check that the backend and database are running, then retry Save Profile. If another tab changed your profile, copy the edits you want to keep before loading the latest saved profile. Browser-only items need available browser storage; avoid clearing site data.",
   },
   {
     question: "How do I use the menu on a phone?",

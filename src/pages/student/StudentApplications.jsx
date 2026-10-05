@@ -1,9 +1,10 @@
-import { accountStorageKey, useAuth } from "../../auth/AuthContext";
-import { useEffect, useState } from "react";
+import { useAuth } from "../../auth/AuthContext";
+import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { opportunities } from "./opportunities";
 import { useStudentActivity } from "./StudentActivity";
 import "./StudentApplications.css";
+import { requestProfile, yearLabel } from "./profileApi";
 
 function PageLayout({ children }) {
   return (
@@ -28,12 +29,8 @@ function StorageStatus({ storage }) {
     </>
   );
 }
-function readProfileAttachment(userId) {
-  const saved = JSON.parse(
-    localStorage.getItem(
-      accountStorageKey(userId, "talentbridge-student-profile-v1"),
-    ) || "null",
-  );
+async function readProfileAttachment(userId) {
+  const saved = await requestProfile(userId);
 
   const profile = saved?.profile;
 
@@ -65,7 +62,11 @@ function readProfileAttachment(userId) {
     profile: Object.fromEntries(
       fields.map((field) => [
         field,
-        typeof profile[field] === "string" ? profile[field] : "",
+        field === "year"
+          ? yearLabel(profile.year)
+          : typeof profile[field] === "string"
+            ? profile[field]
+            : "",
       ]),
     ),
     projects: Array.isArray(saved.projects)
@@ -89,6 +90,18 @@ export function OpportunityDetails({ applicationPage = false }) {
   const [portfolio, setPortfolio] = useState("");
   const [message, setMessage] = useState("");
   const [attachProfile, setAttachProfile] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
+  const pending = useRef(false);
+  const generation = useRef(0);
+
+  useEffect(() => {
+    ++generation.current;
+    pending.current = false;
+    setSubmitting(false);
+    return () => {
+      ++generation.current;
+    };
+  }, [id, applicationPage, user.id]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -119,75 +132,87 @@ export function OpportunityDetails({ applicationPage = false }) {
     }));
   }
 
-  function apply(event) {
+  async function apply(event) {
     event.preventDefault();
-    if (!storage.ready || application) return;
+    if (!storage.ready || application || pending.current) return;
 
+    pending.current = true;
+    setSubmitting(true);
+    const currentGeneration = generation.current;
     setMessage("");
+    try {
+      let profileAttachment = null;
 
-    let profileAttachment = null;
+      if (attachProfile) {
+        try {
+          profileAttachment = await readProfileAttachment(user.id);
+          if (currentGeneration !== generation.current) return;
+        } catch (error) {
+          if (currentGeneration !== generation.current) return;
+          setMessage(
+            error.message ||
+              "Could not attach your saved profile. Open My Profile and click Save Profile, then try again.",
+          );
+          return;
+        }
+      }
 
-    if (attachProfile) {
-      try {
-        profileAttachment = readProfileAttachment(user.id);
-      } catch {
+      let safePortfolio = "";
+
+      if (portfolio.trim()) {
+        try {
+          const url = new URL(portfolio.trim());
+
+          if (!["https:", "http:"].includes(url.protocol)) {
+            throw new Error("Invalid URL");
+          }
+
+          safePortfolio = url.href;
+        } catch {
+          setMessage("Use a portfolio URL starting with https:// or http://.");
+          return;
+        }
+      }
+
+      if (!profileAttachment && !introduction.trim() && !safePortfolio) {
         setMessage(
-          "We couldn’t attach your profile. Open My Profile, complete your name and skills, and wait for “Saved in this browser”. Then try again.",
+          "Attach your profile, write a message, or add a portfolio URL before submitting.",
         );
         return;
       }
-    }
 
-    let safePortfolio = "";
+      const newApplication = {
+        id: crypto.randomUUID(),
+        opportunityId: opportunity.id,
+        profileAttachment,
+        introduction: introduction.trim(),
+        portfolio: safePortfolio,
+        appliedAt: new Date().toISOString(),
+        status: "Applied",
+      };
 
-    if (portfolio.trim()) {
-      try {
-        const url = new URL(portfolio.trim());
-
-        if (!["https:", "http:"].includes(url.protocol)) {
-          throw new Error("Invalid URL");
+      setActivity((current) => {
+        if (
+          current.applications.some(
+            (item) => item.opportunityId === opportunity.id,
+          )
+        ) {
+          return current;
         }
 
-        safePortfolio = url.href;
-      } catch {
-        setMessage("Use a portfolio URL starting with https:// or http://.");
-        return;
+        return {
+          ...current,
+          applications: [...current.applications, newApplication],
+        };
+      });
+
+      setMessage("Demo application added. Check the saving status below.");
+    } finally {
+      if (currentGeneration === generation.current) {
+        pending.current = false;
+        setSubmitting(false);
       }
     }
-
-    if (!profileAttachment && !introduction.trim() && !safePortfolio) {
-      setMessage(
-        "Attach your profile, write a message, or add a portfolio URL before submitting.",
-      );
-      return;
-    }
-
-    const newApplication = {
-      id: crypto.randomUUID(),
-      opportunityId: opportunity.id,
-      profileAttachment,
-      introduction: introduction.trim(),
-      portfolio: safePortfolio,
-      appliedAt: new Date().toISOString(),
-      status: "Applied",
-    };
-
-    setActivity((current) => {
-      if (
-        current.applications.some(
-          (item) => item.opportunityId === opportunity.id,
-        )
-      ) {
-        return current;
-      }
-
-      return {
-        ...current,
-        applications: [...current.applications, newApplication],
-      };
-    });
-
-    setMessage("Demo application added. Check the saving status below.");
   }
   return (
     <PageLayout>
@@ -275,74 +300,83 @@ export function OpportunityDetails({ applicationPage = false }) {
             work.
           </p>
           <form onSubmit={apply}>
-            <div className="sa-profile-attachment">
-              <label className="sa-attach-label" htmlFor="sa-attach-profile">
-                <input
-                  id="sa-attach-profile"
-                  type="checkbox"
-                  checked={attachProfile}
-                  onChange={(event) => setAttachProfile(event.target.checked)}
-                />
-                <span>Attach my TalentBridge profile</span>
+            <fieldset
+              disabled={submitting}
+              style={{ border: 0, margin: 0, padding: 0, minWidth: 0 }}
+            >
+              <legend style={{ fontWeight: 600 }}>Application details</legend>
+              <div className="sa-profile-attachment">
+                <label className="sa-attach-label" htmlFor="sa-attach-profile">
+                  <input
+                    id="sa-attach-profile"
+                    type="checkbox"
+                    checked={attachProfile}
+                    onChange={(event) => setAttachProfile(event.target.checked)}
+                  />
+                  <span>Attach my TalentBridge profile</span>
+                </label>
+
+                <p className="sa-muted">
+                  Include the latest profile saved to your account: name,
+                  education, skills, availability, introduction and projects.
+                  Unsaved profile edits are not included.
+                </p>
+
+                <Link
+                  to="/student/profile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View or complete my profile ↗
+                </Link>
+
+                <p className="sa-muted">
+                  Opens in a new tab so you can keep this application open.
+                  Profile photos are not included in this demo attachment.
+                </p>
+              </div>
+
+              <label htmlFor="sa-introduction">
+                Description or message to the company (optional)
               </label>
+              <textarea
+                id="sa-introduction"
+                rows={4}
+                maxLength={2000}
+                value={introduction}
+                onChange={(event) => setIntroduction(event.target.value)}
+                placeholder="Tell the company why you’re interested or when you’re available."
+              />
 
-              <p className="sa-muted">
-                Include a copy of your name, education, skills, availability,
-                introduction and projects.
-              </p>
+              <label htmlFor="sa-portfolio">
+                GitHub or portfolio URL (optional)
+              </label>
+              <input
+                id="sa-portfolio"
+                type="url"
+                value={portfolio}
+                onChange={(event) => setPortfolio(event.target.value)}
+                placeholder="https://..."
+              />
 
-              <Link
-                to="/student/profile"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View or complete my profile ↗
-              </Link>
-
-              <p className="sa-muted">
-                Opens in a new tab so you can keep this application open.
-                Profile photos are not included in this demo attachment.
-              </p>
-            </div>
-
-            <label htmlFor="sa-introduction">
-              Description or message to the company (optional)
-            </label>
-            <textarea
-              id="sa-introduction"
-              rows={4}
-              maxLength={2000}
-              value={introduction}
-              onChange={(event) => setIntroduction(event.target.value)}
-              placeholder="Tell the company why you’re interested or when you’re available."
-            />
-
-            <label htmlFor="sa-portfolio">
-              GitHub or portfolio URL (optional)
-            </label>
-            <input
-              id="sa-portfolio"
-              type="url"
-              value={portfolio}
-              onChange={(event) => setPortfolio(event.target.value)}
-              placeholder="https://..."
-            />
-
-            <div className="sa-actions">
-              <button
-                type="submit"
-                className="sa-primary"
-                disabled={!storage.ready}
-              >
-                Submit Demo Application
-              </button>
-              <Link
-                className="sa-secondary"
-                to={`/student/opportunities/${opportunity.id}`}
-              >
-                Cancel
-              </Link>
-            </div>
+              <div className="sa-actions">
+                <button
+                  type="submit"
+                  className="sa-primary"
+                  disabled={!storage.ready}
+                >
+                  {submitting
+                    ? "Attaching profile…"
+                    : "Submit Demo Application"}
+                </button>
+                <Link
+                  className="sa-secondary"
+                  to={`/student/opportunities/${opportunity.id}`}
+                >
+                  Cancel
+                </Link>
+              </div>
+            </fieldset>
           </form>
         </section>
       )}

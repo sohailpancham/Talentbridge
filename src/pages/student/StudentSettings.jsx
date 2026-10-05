@@ -118,7 +118,10 @@ export default function StudentSettings() {
             <Link className="sl-button" to="/student/help">
               Help &amp; Support
             </Link>
-            <p>Demo version · Your saved work stays in this browser.</p>
+            <p>
+              Demo version · Profiles save to your account; applications stay in
+              this browser.
+            </p>
           </footer>
         </>
       )}
@@ -248,14 +251,14 @@ export default function StudentSettings() {
         <section className="ss-card">
           <h2>Profile visibility</h2>
           <p>
-            Your profile is currently a local preview. It is not published to
+            Your saved profile is stored in your account. It is not published to
             companies or other students.
           </p>
           <h2>What your application includes</h2>
           <p>
             When applying, you choose whether to attach a copy of your profile.
-            That copy includes your profile details and projects at the time of
-            submission. It does not include your photo.
+            That copy includes your saved profile details and projects at the
+            time of submission. It does not include your photo.
           </p>
           <p>
             Applications are saved locally in this demo and are not sent to
@@ -275,11 +278,13 @@ export default function StudentSettings() {
             database. Your password is not saved in browser storage.
           </p>
           <p>
-            Your profile drafts, photos, saved opportunities, applications, and
-            preferences are saved in this browser when saving succeeds. They are
-            separated by account in this browser and do not sync to another
-            device. Older demo drafts remain separate and are not automatically
-            assigned to an account.
+            Profile details and projects save to the database when you click
+            Save Profile. Sign in to the same account on another browser
+            connected to the same server to load them. Photos, saved
+            opportunities, applications, and preferences remain in this browser,
+            separated by account. You can import the browser profile draft for
+            your account from My Profile. Older unassigned demo drafts are not
+            automatically imported.
           </p>
           <p>
             Account separation in the app does not encrypt browser drafts. Use a
@@ -287,9 +292,11 @@ export default function StudentSettings() {
           </p>
           <h2>Keeping your work</h2>
           <p>
-            Wait for the saved status before closing a page. Clearing this
-            site’s browser data can remove your work. Private browsing may
-            remove it when the session ends.
+            Click Save Profile before leaving the profile editor. Clearing
+            browser data can remove photos, demo applications, saved
+            opportunities, and preferences, but does not delete your database
+            profile. Private browsing may remove browser-only work when the
+            session ends.
           </p>
           <h2>Resetting preferences</h2>
           <p>
